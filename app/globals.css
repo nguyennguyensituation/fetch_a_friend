@@ -20,4 +20,29 @@ body {
 
 h1, h2, h3 {
   font-family: 'WeGoSerifBold', serif;
+  margin-block: unset;
+}
+
+input, button {
+  font-family: 'WeGoSansRegular', sans-serif;
+}
+
+button {
+  padding: 10px 20px;
+  min-width: 100px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+p {
+  margin-block: unset;
+}
+
+a {
+  color: black;
 }

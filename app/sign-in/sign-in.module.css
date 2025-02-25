@@ -1,0 +1,33 @@
+.login {
+  background-color: whitesmoke;
+  padding: 20px;
+}
+
+.login * {
+  display: block;
+}
+
+.login fieldset {
+  border: none;
+  padding: 10px 0;
+}
+
+.login label {
+  padding: 10px 0;
+}
+
+.login input {
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+  width: 500px;
+  font-size: 1em;
+}
+
+.login button {
+  margin: 20px 0 0 0;
+}
+
+.error {
+  color: tomato;
+}
