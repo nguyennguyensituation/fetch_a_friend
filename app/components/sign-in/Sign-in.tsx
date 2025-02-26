@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import styles from "../sign-in/sign-in.module.css";
-import { redirect } from 'next/navigation'
 
-export default function SignIn() {  
+export default function SignIn(props: {
+  setUsername: (name: string) => void
+}) {  
   const [message, setMessage] = useState('');
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -23,8 +24,7 @@ export default function SignIn() {
     const response = await fetch(request);
     
     if (response.ok) {
-      console.log("Success!");
-      redirect("/home");
+      props.setUsername(name as string);
     } else {
       setMessage('There was an error signing in. Please try again.')
       throw new Error("There was an error signing in");

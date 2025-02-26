@@ -1,16 +1,23 @@
-import styles from "./page.module.css";
-import SignIn from "./sign-in/Sign-in";
+"use client"
+
+import Header from "@/app/components/header/Header";
+import SignIn from "./components/sign-in/Sign-in";
+import Dogs from "@/app/components/dogs/Dogs";
+import Favorites from "@/app/components/favorites/Favorites";
+
+import { useState } from "react";
 
 export default function Page() {
+  const [username, setUsername] = useState<string>('');
+  const [accessToken, setAccessToken] = useState<string>('');
 
   return (
     <div>
-      <main className={styles.index}>
-        <header>
-          <h1>Welcome to Fetch a Friend!</h1>
-          <h3>A matchmaking tool to find four-footed friends</h3>
-        </header>
-        <SignIn />
+      <main>
+        <Header username={username}/>
+        {!username && <SignIn setUsername={setUsername}/>}
+        {username && <Dogs/>}
+        {/* {signedIn && <Favorites />} */}
       </main>
     </div>
   );
