@@ -14,8 +14,8 @@
 
 body {
   font-family: 'WeGoSansRegular', sans-serif;
-  width: 60%;
   margin: auto;
+  padding: 20px;
 }
 
 h1, h2, h3 {

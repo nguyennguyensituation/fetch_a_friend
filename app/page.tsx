@@ -9,7 +9,6 @@ import { useState } from "react";
 
 export default function Page() {
   const [username, setUsername] = useState<string>('');
-  const [accessToken, setAccessToken] = useState<string>('');
 
   return (
     <div>

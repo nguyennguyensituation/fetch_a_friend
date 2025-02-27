@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from "./dogs.module.css";
-import Profile from './Profile';
+import Card from './Card';
 
 interface Dog {
   id: string
@@ -59,7 +59,7 @@ export default function Dogs() {
     return <option key={idx}>{breed}</option>
   })
   const [results, setResults] = useState<Dog[]>();
-  const dogList = results?.map((dog, idx) => <Profile data={dog} key={idx}/>)
+  const dogList = results?.map((dog, idx) => <Card data={dog} key={idx}/>)
 
   useEffect(() => {
     // Populate breed list and default results
@@ -70,19 +70,26 @@ export default function Dogs() {
   return (
     <section className={styles.dogs}>
       <h2>Dogs</h2>
-      <form>
-        <fieldset>
-          <h3>Filter</h3>
-          <label>Breed</label>
-          <select>
-            {breeds ? breedList : defaultBreedlist}
-          </select>
+      <form className={styles.filter}>
+        <h3>Filter</h3>
+        <fieldset>    
+          <label>I&apos;m looking for a(n)
+            <select>
+              {breeds ? breedList : defaultBreedlist}
+            </select>
+            .
+          </label>
         </fieldset>
       </form>
 
+      <div className={styles.query}>
+        <p>Searching for: TK summary</p>
+      </div>
+
       <div>
-        <p>Results for: all dogs</p>
+        <div className={styles.resultsContainer}>
         {dogList ? dogList : <p>(No results found)</p>}
+        </div>
       </div>
     </section>
   );

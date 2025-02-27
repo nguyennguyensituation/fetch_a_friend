@@ -1,0 +1,44 @@
+.card {
+  display: grid;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  height: auto;
+  width: auto;
+  border-radius: 30px;
+  border: solid 1px black;
+  justify-content: center;
+  align-items: center;
+}
+
+.dogName {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.imgContainer {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;         
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.imgContainer img {
+  min-width: 300px;
+}
+
+.card:hover {
+  z-index: 100;
+
+  .imgContainer {
+    border-radius: 0;
+  }
+
+  .imgContainer img {
+    min-width: 200px;
+  }
+  
+}
