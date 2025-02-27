@@ -17,6 +17,7 @@
 }
 
 .imgContainer {
+  position: relative;
   width: 200px;
   height: 200px;
   overflow: hidden;         
@@ -26,9 +27,9 @@
   align-items: center;  
 }
 
-.imgContainer img {
+/* .imgContainer img {
   min-width: 300px;
-}
+} */
 
 .card:hover {
   z-index: 100;

@@ -21,6 +21,7 @@ function getAgeDisplayText(age: number): string {
 }
 export default function Card(props: {
   data: Dog,
+  isPriority: boolean
 }) {
   const { age, breed, img, name, zip_code } = props.data;
   const ageDisplay = getAgeDisplayText(age);
@@ -34,9 +35,10 @@ export default function Card(props: {
           <Image
           src={img}
           alt={altTextDisplay}
-          layout="intrinsic"          
-          width={300}
-          height={0}
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          sizes="(max-width: 300px) 100vw, 100vw"
+          priority={props.isPriority}
           />
         </div>
       </figure>
