@@ -1,16 +1,8 @@
 import styles from './card.module.css';
 import Image from 'next/image';
+import { Dog } from '@/app/lib/definitions';
 
-interface Dog {
-  id: string
-  img: string
-  name: string
-  age: number
-  zip_code: string
-  breed: string
-}
-
-function getAgeDisplayText(age: number): string {
+function getAgeDisplay(age: number): string {
   if (age < 1) {
     return "Under a year old"
   } else if (age === 1) {
@@ -19,12 +11,13 @@ function getAgeDisplayText(age: number): string {
     return `${age} years old`
   }
 }
+
 export default function Card(props: {
   data: Dog,
   isPriority: boolean
 }) {
   const { age, breed, img, name, zip_code } = props.data;
-  const ageDisplay = getAgeDisplayText(age);
+  const ageDisplay = getAgeDisplay(age);
   const altTextDisplay = `${ageDisplay} ${breed} dog named ${name}`
 
   return (

@@ -1,4 +1,4 @@
-import { Query } from './Dogs';
+import { Query } from '@/app/lib/definitions';
 
 function resultsRangeDisplay(currentPage: number, resultsCount: number) {
   const isLastPage = resultsCount - (currentPage * 25) <= 0;
@@ -24,10 +24,16 @@ function querySummary(query: Query, resultsCount: number): string {
   }
 
   const breedSort = sort.breed === 'asc' ? 'ascending' : 'descending';
+  let resultsCountDisplay;
 
-  return `There are ${resultsCount} dogs that matched your search criteria: ${breedStr} (sorted in ${breedSort} order by breed)`
+  if (resultsCount === 1) {
+    resultsCountDisplay = 'There is 1 dog that matched your search criteria:';
+  } else {
+    resultsCountDisplay = `There a ${resultsCount} dogs that matched your search criteria:`;
+  }
+
+  return `${resultsCountDisplay}: ${breedStr} (sorted in ${breedSort} order by breed)`
 }
-
 
 export default function Summary(props: {
   queryData: Query,
@@ -35,6 +41,7 @@ export default function Summary(props: {
   currentPage: number
 }) {
   const { queryData, resultsCount, currentPage } = props;
+
   return (
     <div>
       <p>{querySummary(queryData, resultsCount)}</p>

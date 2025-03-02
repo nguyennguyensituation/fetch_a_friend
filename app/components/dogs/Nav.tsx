@@ -1,5 +1,5 @@
 import styles from './Nav.module.css';
-import { Dog, PageNavUrls } from './Dogs';
+import { Dog, PageNavUrls } from '@/app/lib/definitions';
 
 async function fetchNextDogs(setResults: (results: Dog[]) => void,
   setNextPrev: (urls: PageNavUrls) => void,
@@ -35,8 +35,9 @@ async function fetchNextDogs(setResults: (results: Dog[]) => void,
     }
 
     const dogData = await dogResponse.json();
-    setCurrentPage(isNext ? currentPage + 1 : currentPage - 1)
+
     setResults(dogData);
+    setCurrentPage(isNext ? currentPage + 1 : currentPage - 1)
     setNextPrev({ next: searchData.next ? searchData.next : '', 
       prev: searchData.prev ? searchData.prev: '' });
   } catch {
