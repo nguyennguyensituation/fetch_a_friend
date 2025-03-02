@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import styles from "./dogs.module.css";
 import Card from './Card';
+import Nav from "./Nav"
+import Summary from './Summary';
 
-interface Dog {
+export interface Dog {
   id: string
   img: string
   name: string
@@ -11,12 +13,12 @@ interface Dog {
   breed: string
 }
 
-type Query = {
+export type Query = {
   breeds: string[],
   sort: { breed: string}
 }
 
-type PageNavUrls = {
+export type PageNavUrls = {
   next: string,
   prev: string
 }
@@ -101,26 +103,6 @@ function handleQuery(event: React.FormEvent,
   })
 }
 
-function querySummary(query: Query): string {
-  const { breeds, sort } = query;
-  const numBreeds = breeds.length;
-  let breedStr;
-
-  if (numBreeds === 0 || breeds[0] === 'any') {
-    breedStr = 'all breeds'
-  } else if (numBreeds === 1) {
-    breedStr = breeds[0];
-  } else if (numBreeds === 2) {
-    breedStr = breeds.join(' and ');
-  } else {
-    breedStr = `${breeds.slice(0, -1).join(', ')}, and ${breeds[numBreeds - 1]}`
-  }
-
-  const breedSort = sort.breed === 'asc' ? 'ascending' : 'descending';
-
-  return `Showing results for ${breedStr}, sorted in ${breedSort} order`
-}
-
 const breedPlaceholder = (<option>Loading breeds...</option>);
 const defaultQuery: Query = {
   breeds: ['any'],
@@ -140,7 +122,7 @@ export default function Dogs() {
       })}
     </>)
   const [queryData, setQueryData] = useState<Query>(defaultQuery);
-  const [resultsCount, setResultsCount] = useState<number>();
+  const [resultsCount, setResultsCount] = useState<number>(0);
   const [results, setResults] = useState<Dog[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [nextPrev, setNextPrev] = useState<PageNavUrls>(defaultNextPrev);
@@ -181,22 +163,9 @@ export default function Dogs() {
         <button type="submit">Filter</button>
       </form>
 
-      <div className={styles.query}>
-        <p>{querySummary(queryData)}</p>
-        <p>Results: {resultsCount} dogs match your query</p>
-        <p>Showing TK to TK results</p>
-        {nextPrev.prev && <button onClick={(e) => {
-          e.preventDefault();
-          fetchDogs(setResults, setResultsCount, setNextPrev, queryData, nextPrev.prev)
-          setCurrentPage(currentPage - 1);
-        }}>Back</button>}
-        <p>{currentPage}</p>
-        {nextPrev.next && <button onClick={(e) => {
-          e.preventDefault();
-          fetchDogs(setResults, setResultsCount, setNextPrev, queryData, nextPrev.next)
-          setCurrentPage(currentPage + 1);
-        }}>Next</button>}
-      </div>
+      <Summary queryData={queryData} resultsCount={resultsCount} currentPage={currentPage}/>
+      <Nav setResults={setResults} nextPrev={nextPrev} setNextPrev={setNextPrev} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+
 
       <div>
         <div className={styles.resultsContainer}>
