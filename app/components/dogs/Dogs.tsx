@@ -16,6 +16,11 @@ type Query = {
   sort: { breed: string}
 }
 
+type PageNavUrls = {
+  next: string,
+  prev: string
+}
+
 async function fetchBreeds(setBreeds: (breeds: string[]) => void): Promise<void> {
   const res = await fetch("https://frontend-take-home-service.fetch.com/dogs/breeds", { credentials: 'include' });
 
@@ -27,36 +32,40 @@ async function fetchBreeds(setBreeds: (breeds: string[]) => void): Promise<void>
   }
 }
 
-function formatUrl(baseUrl: string,
-  query: Query): string {
-  const breedSortQuery = `sort=breed:${query.sort.breed}`;
+function formatQueries(queryData: Query): string {
+  const breedSortQuery = `sort=breed:${queryData.sort.breed}`;
   let breedQuery;
   
-  if (query.breeds.length === 0 || query.breeds[0] === 'any') {
+  if (queryData.breeds.length === 0 || queryData.breeds[0] === 'any') {
     breedQuery = ''
   } else {
-    breedQuery = query.breeds.map(breed => `&breeds=${breed}`).join('');
+    breedQuery = queryData.breeds.map(breed => `&breeds=${breed}`).join('');
   }
 
-  return baseUrl + breedSortQuery + breedQuery;
+  return "https://frontend-take-home-service.fetch.com/dogs/search?" + breedSortQuery + breedQuery;
 }
 
-async function fetchDogs(query: Query,
-  setResults: (results: Dog[]) => void): Promise<void> {
+async function fetchDogs(setResults: (results: Dog[]) => void,
+  setResultsCount: (numResults: number) => void,
+  setNextPrev: (urls: PageNavUrls) => void,
+  queryData: Query,
+  query?: string): Promise<void> {
   try {
-    const url = formatUrl("https://frontend-take-home-service.fetch.com/dogs/search?", query)
-    const idResponse = await fetch(url, {
+    const url = query ? "https://frontend-take-home-service.fetch.com" + query : formatQueries(queryData);
+
+    // Get array of Dog IDs, sorted and filtered by queries
+    const searchResponse = await fetch(url, {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
     })
 
-    if (!idResponse.ok) {
+    if (!searchResponse.ok) {
       throw new Error("Failed to fetch dog ids");
     }
 
-    const idData = await idResponse.json();
-    const dogIds = idData.resultIds;
-
+    // Get Dog objects from filtered IDs
+    const searchData = await searchResponse.json();
+    const dogIds = searchData.resultIds;
     const dogResponse = await fetch("https://frontend-take-home-service.fetch.com/dogs", {
       method: 'POST',
       credentials: 'include',
@@ -68,23 +77,25 @@ async function fetchDogs(query: Query,
       throw new Error("Failed to fetch dog objects");
     }
 
-    // Get Dog objects from filtered ids
     const dogData = await dogResponse.json();
-   
+    setResultsCount(searchData.total)
     setResults(dogData);
+
+    setNextPrev({ next: searchData.next ? searchData.next : '', 
+      prev: searchData.prev ? searchData.prev: '' });
   } catch {
     throw new Error("Failed to fetch dog objects");
   }
 }
 
 function handleQuery(event: React.FormEvent,
-  setQuery: (query: Query) => void) {
+  setQueryData: (query: Query) => void) {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);
   const selectedBreeds = formData.getAll('selectedBreeds') as string[];
   const sortBreeds = formData.get('sortBreeds') as string;
 
-  setQuery({
+  setQueryData({
     breeds: selectedBreeds,
     sort: { breed: sortBreeds ? sortBreeds : 'asc'}
   })
@@ -115,6 +126,10 @@ const defaultQuery: Query = {
   breeds: ['any'],
   sort: { breed: 'asc'}
 }
+const defaultNextPrev: PageNavUrls = {
+  next: '',
+  prev: ''
+}
 
 export default function Dogs() {
   const [breeds, setBreeds] = useState<string[]>();
@@ -124,21 +139,24 @@ export default function Dogs() {
         return <option key={idx} value={breed}>{breed}</option>
       })}
     </>)
-  const [query, setQuery] = useState<Query>(defaultQuery);
+  const [queryData, setQueryData] = useState<Query>(defaultQuery);
+  const [resultsCount, setResultsCount] = useState<number>();
   const [results, setResults] = useState<Dog[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [nextPrev, setNextPrev] = useState<PageNavUrls>(defaultNextPrev);
   const dogList = results?.map((dog, idx) => <Card data={dog} key={idx} isPriority={idx === 0}/>)
 
   useEffect(() => {
     // Populate breed list and default Dog results
-    fetchDogs(query, setResults);
+    fetchDogs(setResults, setResultsCount, setNextPrev, queryData);
     fetchBreeds(setBreeds);
   }, []);
 
   return (
     <section className={styles.dogs}>
       <form className={styles.filter} onSubmit={(e) => {
-        handleQuery(e, setQuery);
-        fetchDogs(query, setResults);
+        handleQuery(e, setQueryData);
+        fetchDogs(setResults, setResultsCount, setNextPrev, queryData);
         }}>
         <h2>Find Dogs</h2>
         <fieldset>    
@@ -164,8 +182,20 @@ export default function Dogs() {
       </form>
 
       <div className={styles.query}>
-        <p>{querySummary(query)}</p>
-        <p>Total results: TK</p>
+        <p>{querySummary(queryData)}</p>
+        <p>Results: {resultsCount} dogs match your query</p>
+        <p>Showing TK to TK results</p>
+        {nextPrev.prev && <button onClick={(e) => {
+          e.preventDefault();
+          fetchDogs(setResults, setResultsCount, setNextPrev, queryData, nextPrev.prev)
+          setCurrentPage(currentPage - 1);
+        }}>Back</button>}
+        <p>{currentPage}</p>
+        {nextPrev.next && <button onClick={(e) => {
+          e.preventDefault();
+          fetchDogs(setResults, setResultsCount, setNextPrev, queryData, nextPrev.next)
+          setCurrentPage(currentPage + 1);
+        }}>Next</button>}
       </div>
 
       <div>

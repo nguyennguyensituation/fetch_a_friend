@@ -7,11 +7,14 @@ export default function Header(props: {
   return (
     <header className={styles.header}>
     <h1>Fetch a Friend</h1>
-    {!username && 
-      <h3>A matchmaking tool to find your next four-footed friend</h3>}
-    {username && 
+    <h3>A matchmaking tool to find four-footed friends</h3>
+    <nav className={styles.nav}>
+      {username && 
       <p>Welcome, <span className={styles.username}>{username}</span>
       !</p>}
+      {!username && <p>TK unsigned in nav</p>}
+    </nav>
+    
   </header>
   );
 }
