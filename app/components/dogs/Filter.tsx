@@ -8,6 +8,7 @@ export default function FilterForm(props: {
   setResults: (results: Dog[]) => void,
   setResultsCount: (count: number) => void,
   setNextPrev: (urls: PageNavUrls) => void,
+  setCurrentPage: (page: number) => void
 }) {
   const [breeds, setBreeds] = useState<string[]>();
 
@@ -18,7 +19,7 @@ export default function FilterForm(props: {
   return (
     <form className={styles.filter} onSubmit={(e: React.FormEvent) => {
       e.preventDefault();
-      handleQuery(e, props.setQueries);
+      handleQuery(e, props.setQueries, props.setNextPrev, props.setCurrentPage);
       }}>
       <h2>Filter Dogs</h2>
       <fieldset>    

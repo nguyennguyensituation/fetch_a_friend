@@ -15,14 +15,25 @@ export default function Dogs() {
   const [nextPrev, setNextPrev] = useState<PageNavUrls>(defaultNextPrev);
 
   useEffect(() => {
-    fetchDogs(setResults, setResultsCount, setNextPrev, queries)
+    fetchDogs(setResults, setResultsCount, setNextPrev, queries);
   }, [queries]);
   
   return (
     <section className={styles.dogs}>
-      <FilterForm setQueries={setQueries} setNextPrev={setNextPrev} setResults={setResults} setResultsCount={setResultsCount} />
-      <Summary queries={queries} resultsCount={resultsCount} currentPage={currentPage}/>
-      <Nav setResults={setResults} nextPrev={nextPrev} setNextPrev={setNextPrev} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+      <FilterForm setQueries={setQueries}
+        setNextPrev={setNextPrev}
+        setResults={setResults}
+        setResultsCount={setResultsCount}
+        setCurrentPage={setCurrentPage}/>
+      <Summary queries={queries}
+        resultsCount={resultsCount}
+        currentPage={currentPage}/>
+      <Nav setResults={setResults}
+        nextPrev={nextPrev}
+        setNextPrev={setNextPrev}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        resultsCount={resultsCount}/>
       <Results results={results}/>
     </section>
   );

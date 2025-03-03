@@ -47,3 +47,23 @@ export async function fetchNextDogs(setResults: (results: Dog[]) => void,
     throw new Error(`Failed to fetch ${isNext ? 'next' : 'previous'} page of dog objects`);
   }
 }
+
+export function navButton(direction: 'next' | 'prev',
+  currentPage: number,
+  lastPage: number,
+  setResults: (results: Dog[]) => void,
+  setNextPrev: (urls: PageNavUrls) => void,
+  setCurrentPage: (page: number) => void,
+  query: string
+) {
+  const isNext = direction === 'next';
+  const validDirection = (!isNext && currentPage > 1) || (isNext && currentPage < lastPage)
+  const buttonText = isNext ? "Next >" : "< Back";
+  const callBack = () => {
+    fetchNextDogs(setResults, setNextPrev, currentPage, setCurrentPage, query, isNext);
+  };
+
+  return validDirection ?
+    <button onClick={callBack}>{buttonText}</button> :
+    <button disabled></button>
+}

@@ -1,7 +1,7 @@
 import { Query } from '@/app/lib/definitions';
 import { formatList } from '@/app/utils/globalUtils';
 
-export function querySummary(query: Query, resultsCount: number): string {
+export function querySummary(query: Query, resultsCount: number) {
   const { breeds, sort } = query;
   const searchAllBreeds = breeds.length === 0 || breeds[0] === 'any';
   const breedListDisplay = searchAllBreeds ? 'all breeds' : formatList(breeds);
@@ -10,7 +10,13 @@ export function querySummary(query: Query, resultsCount: number): string {
     'There is 1 dog':
     `There are ${resultsCount} dogs`;
 
-  return `${resultsCountDisplay} that matched your search criteria: ${breedListDisplay} (sorted in ${breedSort} order by breed)`
+  return <>
+    <p>{resultsCountDisplay} that matched these search criteria:</p>
+    <ul>
+      <li>Breeds: {breedListDisplay}</li>
+      <li>Sorted in {breedSort} order by breed</li>
+    </ul>
+  </>
 }
 
 export function resultsRangeDisplay(currentPage: number, resultsCount: number): string {
@@ -19,5 +25,5 @@ export function resultsRangeDisplay(currentPage: number, resultsCount: number): 
   const lastResultNum = isLastPage ? resultsCount: currentPage * RESULTS_PER_PAGE;
   const firstResultNum = ((currentPage - 1) * RESULTS_PER_PAGE) + 1;
 
-  return `Showing ${firstResultNum} through ${lastResultNum}`;
+  return `Displaying ${firstResultNum} through ${lastResultNum}`;
 }

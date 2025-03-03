@@ -1,5 +1,7 @@
-import { Query } from '@/app/lib/definitions';
+import { Query, PageNavUrls } from '@/app/lib/definitions';
 import { BASE_URL } from './globalUtils';
+import { defaultNextPrev } from '@/app/utils/dogUtils';
+
 
 export const breedPlaceholder = (<option>Loading breeds...</option>);
 
@@ -18,15 +20,19 @@ export async function fetchBreeds(setBreeds: (breeds: string[]) => void): Promis
 }
 
 export function handleQuery(event: React.FormEvent,
-  setQueries: (queries: Query) => void) {
+  setQueries: (queries: Query) => void,
+  setNextPrev: (urls: PageNavUrls) => void,
+  setCurrentPage: (page: number) => void) {
   const formData = new FormData(event.target as HTMLFormElement);
   const selectedBreeds = formData.getAll('selectedBreeds') as string[];
   const sortBreeds = formData.get('sortBreeds') as string;
 
+  setNextPrev(defaultNextPrev);
+  setCurrentPage(1);
   setQueries({
     breeds: selectedBreeds,
     sort: { breed: sortBreeds ? sortBreeds : 'asc'}
-  })
+  });
 }
 
 export function getBreedOptions(breeds?: string[]) {

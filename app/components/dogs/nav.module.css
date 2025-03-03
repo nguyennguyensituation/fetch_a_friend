@@ -1,0 +1,19 @@
+.nav {
+  text-align: center;
+}
+
+.nav * {
+  display: inline-block;
+}
+
+.nav button {
+  background-color: inherit;
+}
+
+.nav button:hover {
+  text-decoration: underline;
+}
+
+.nav button:disabled:hover {
+  cursor: auto;
+}
