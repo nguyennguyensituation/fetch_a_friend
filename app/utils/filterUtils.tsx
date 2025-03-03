@@ -19,8 +19,6 @@ export async function fetchBreeds(setBreeds: (breeds: string[]) => void): Promis
 
 export function handleQuery(event: React.FormEvent,
   setQueryData: (queries: Query) => void) {
-  event.preventDefault();
-
   const formData = new FormData(event.target as HTMLFormElement);
   const selectedBreeds = formData.getAll('selectedBreeds') as string[];
   const sortBreeds = formData.get('sortBreeds') as string;
@@ -46,10 +44,9 @@ function formatQueries(queries: Query): string {
 export async function fetchDogs(setResults: (results: Dog[]) => void,
   setResultsCount: (numResults: number) => void,
   setNextPrev: (urls: PageNavUrls) => void,
-  queryData: Query,
-  query?: string): Promise<void> {
+  queryData: Query): Promise<void> {
   try {
-    const idsUrl = query ? BASE_URL + query : formatQueries(queryData);
+    const idsUrl = formatQueries(queryData);
 
     // First, get arr of Dog IDs, sorted and filtered by queries
     const searchResponse = await fetch(idsUrl, {

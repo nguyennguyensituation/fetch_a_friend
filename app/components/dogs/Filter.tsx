@@ -21,14 +21,14 @@ export default function FilterForm(props: {
 
   useEffect(() => {
       // Populate breed list and default Dog results on load
-      fetchDogs(setResults, setResultsCount, setNextPrev, queryData);
+      // fetchDogs(setResults, setResultsCount, setNextPrev, queryData);
       fetchBreeds(setBreeds);
     }, []);
 
   return (
     <form className={styles.filter} onSubmit={(e) => {
+      e.preventDefault();
       handleQuery(e, setQueryData);
-      fetchDogs(setResults, setResultsCount, setNextPrev, queryData);
       }}>
       <h2>Find Dogs</h2>
       <fieldset>    
