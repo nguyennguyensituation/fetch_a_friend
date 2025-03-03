@@ -5,10 +5,10 @@ export const handleSignIn = async (event: React.FormEvent,
   setMessage: (message: string) => void
 ) => {
   const formData = new FormData(event.target as HTMLFormElement);
-  const url = BASE_URL + "/auth/login";
+  const path = "/auth/login";
   const name = formData.get('name');
   const email = formData.get('email');
-  const request = new Request(url, {
+  const request = new Request(BASE_URL + path, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',

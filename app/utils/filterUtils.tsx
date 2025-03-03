@@ -5,8 +5,8 @@ export const breedPlaceholder = (<option>Loading breeds...</option>);
 
 // Populates data for breeds dropdown menu
 export async function fetchBreeds(setBreeds: (breeds: string[]) => void): Promise<void> {
-  const url = BASE_URL + "/dogs/breeds";
-  const res = await fetch(url, { credentials: 'include' });
+  const path = "/dogs/breeds";
+  const res = await fetch(BASE_URL + path, { credentials: 'include' });
 
   if (res.ok) {
     const data = await res.json();
@@ -18,12 +18,12 @@ export async function fetchBreeds(setBreeds: (breeds: string[]) => void): Promis
 }
 
 export function handleQuery(event: React.FormEvent,
-  setQueryData: (queries: Query) => void) {
+  setQueries: (queries: Query) => void) {
   const formData = new FormData(event.target as HTMLFormElement);
   const selectedBreeds = formData.getAll('selectedBreeds') as string[];
   const sortBreeds = formData.get('sortBreeds') as string;
 
-  setQueryData({
+  setQueries({
     breeds: selectedBreeds,
     sort: { breed: sortBreeds ? sortBreeds : 'asc'}
   })
@@ -33,9 +33,7 @@ export function getBreedOptions(breeds?: string[]) {
   return (
     <>
       <option value='any'>Any breed</option>
-      {breeds?.map((breed, idx) => {
-        return <option key={idx} value={breed}>{breed}</option>
-      })}
+      {breeds?.map((breed, idx) => <option key={idx} value={breed}>{breed}</option>)}
     </>
   );
 }

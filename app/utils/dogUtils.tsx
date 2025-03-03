@@ -12,23 +12,22 @@ export const defaultNextPrev: PageNavUrls = {
 }
 
 function formatQueries(queries: Query): string {
-  const url = BASE_URL + "/dogs/search?";
+  const path = "/dogs/search?";
   const breedSortQuery = `sort=breed:${queries.sort.breed}`;
-  const findAllBreeds = queries.breeds[0] === 'any';
-  const breedQuery = queries.breeds.length === 0 || findAllBreeds ?
-    '' : 
-    queries.breeds.map(breed => `&breeds=${breed}`).join('');
+  const selectedAllBreeds = queries.breeds.length === 1 && queries.breeds[0] === 'any';
+  const breedQuery = selectedAllBreeds ? '' :
+    queries.breeds.map(breed => (breed !== 'any') ? `&breeds=${breed}` : '').join('');
 
-  return url + breedSortQuery + breedQuery;
+  return BASE_URL + path + breedSortQuery + breedQuery;
 }
 
 // Populates data for results
 export async function fetchDogs(setResults: (results: Dog[]) => void,
   setResultsCount: (numResults: number) => void,
   setNextPrev: (urls: PageNavUrls) => void,
-  queryData: Query): Promise<void> {
+  queries: Query): Promise<void> {
   try {
-    const idsUrl = formatQueries(queryData);
+    const idsUrl = formatQueries(queries);
 
     // First, get arr of Dog IDs, sorted and filtered by queries
     const searchResponse = await fetch(idsUrl, {
@@ -43,8 +42,8 @@ export async function fetchDogs(setResults: (results: Dog[]) => void,
     // Next, get Dog objects from Dog IDs arr
     const searchData = await searchResponse.json();
     const dogIds = searchData.resultIds;
-    const resultsUrl = BASE_URL + "/dogs";
-    const dogResponse = await fetch(resultsUrl, {
+    const dogsPath = "/dogs";
+    const dogResponse = await fetch(BASE_URL + dogsPath, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },

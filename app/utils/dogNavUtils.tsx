@@ -9,10 +9,8 @@ export async function fetchNextDogs(setResults: (results: Dog[]) => void,
   query: string,
   isNext: boolean): Promise<void> {
   try {
-    const url = BASE_URL + query;
-
     // First, get arr of Dog IDs, sorted and filtered by queries
-    const searchResponse = await fetch(url, {
+    const searchResponse = await fetch(BASE_URL + query, {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -24,8 +22,8 @@ export async function fetchNextDogs(setResults: (results: Dog[]) => void,
     // Next, get arr of Dog objects from filtered IDs
     const searchData = await searchResponse.json();
     const dogIds = searchData.resultIds;
-    const dogsUrl = BASE_URL + "/dogs";
-    const dogResponse = await fetch(dogsUrl, {
+    const dogsPath = "/dogs";
+    const dogResponse = await fetch(BASE_URL + dogsPath, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },

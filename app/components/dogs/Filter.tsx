@@ -4,7 +4,7 @@ import styles from './filter.module.css'
 import { breedPlaceholder, getBreedOptions, fetchBreeds, handleQuery } from '@/app/utils/filterUtils';
 
 export default function FilterForm(props: {
-  setQueryData: (query: Query) => void,
+  setQueries: (queries: Query) => void,
   setResults: (results: Dog[]) => void,
   setResultsCount: (count: number) => void,
   setNextPrev: (urls: PageNavUrls) => void,
@@ -18,11 +18,11 @@ export default function FilterForm(props: {
   return (
     <form className={styles.filter} onSubmit={(e: React.FormEvent) => {
       e.preventDefault();
-      handleQuery(e, props.setQueryData);
+      handleQuery(e, props.setQueries);
       }}>
       <h2>Filter Dogs</h2>
       <fieldset>    
-        <label htmlFor='selectedBreeds'>I am interested in&nbsp;
+        <label htmlFor='selectedBreeds'>Selected breed(s):&nbsp;
           <select name='selectedBreeds' multiple
             id='selectedBreeds'
             defaultValue={['any']}
@@ -33,10 +33,10 @@ export default function FilterForm(props: {
         </label>
       </fieldset>
       <fieldset>
-        <label htmlFor='sortBreeds'>Sort breed(s) in</label>
+        <label htmlFor='sortBreeds'>Sort breed(s) from</label>
         <select name='sortBreeds' id='sortBreeds' defaultValue="asc">
-          <option value="asc" >ascending order (A to Z)</option>
-          <option value="desc">descending order (Z to A)</option>
+          <option value="asc" >A to Z</option>
+          <option value="desc">Z to A</option>
         </select>
       </fieldset>
       <button type="reset" className={styles.reset} disabled={!breeds}>Reset filter</button>
