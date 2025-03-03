@@ -1,5 +1,7 @@
 import { Dog, PageNavUrls } from '@/app/lib/definitions';
+import { BASE_URL } from './globalUtils';
 
+// Populates data for next or prev set of Dog results
 export async function fetchNextDogs(setResults: (results: Dog[]) => void,
   setNextPrev: (urls: PageNavUrls) => void,
   currentPage: number,
@@ -7,9 +9,9 @@ export async function fetchNextDogs(setResults: (results: Dog[]) => void,
   query: string,
   isNext: boolean): Promise<void> {
   try {
-    const url ='https://frontend-take-home-service.fetch.com' + query;
+    const url = BASE_URL + query;
 
-    // Get array of Dog IDs, sorted and filtered by queries
+    // First, get arr of Dog IDs, sorted and filtered by queries
     const searchResponse = await fetch(url, {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -19,10 +21,11 @@ export async function fetchNextDogs(setResults: (results: Dog[]) => void,
       throw new Error("Failed to fetch dog ids");
     }
 
-    // Get Dog objects from filtered IDs
+    // Next, get arr of Dog objects from filtered IDs
     const searchData = await searchResponse.json();
     const dogIds = searchData.resultIds;
-    const dogResponse = await fetch("https://frontend-take-home-service.fetch.com/dogs", {
+    const dogsUrl = BASE_URL + "/dogs";
+    const dogResponse = await fetch(dogsUrl, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -35,10 +38,13 @@ export async function fetchNextDogs(setResults: (results: Dog[]) => void,
 
     const dogData = await dogResponse.json();
 
+    // Set results and page nav data
     setResults(dogData);
     setCurrentPage(isNext ? currentPage + 1 : currentPage - 1)
-    setNextPrev({ next: searchData.next ? searchData.next : '', 
-      prev: searchData.prev ? searchData.prev: '' });
+    setNextPrev({
+      next: searchData.next ? searchData.next : '', 
+      prev: searchData.prev ? searchData.prev: ''
+    });
   } catch {
     throw new Error(`Failed to fetch ${isNext ? 'next' : 'previous'} page of dog objects`);
   }

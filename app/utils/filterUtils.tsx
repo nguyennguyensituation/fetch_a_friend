@@ -1,8 +1,7 @@
 import { Dog, Query, PageNavUrls } from '@/app/lib/definitions';
+import { BASE_URL } from './globalUtils';
 
 export const breedPlaceholder = (<option>Loading breeds...</option>);
-
-const BASE_URL = "https://frontend-take-home-service.fetch.com";
 
 // Populates data for breeds dropdown menu
 export async function fetchBreeds(setBreeds: (breeds: string[]) => void): Promise<void> {
@@ -82,8 +81,10 @@ export async function fetchDogs(setResults: (results: Dog[]) => void,
     // Set results and nav links
     setResults(dogData);
     setResultsCount(searchData.total)
-    setNextPrev({ next: searchData.next ? searchData.next : '', 
-      prev: searchData.prev ? searchData.prev: '' });
+    setNextPrev({
+      next: searchData.next ? searchData.next : '', 
+      prev: searchData.prev ? searchData.prev: ''
+    });
   } catch {
     throw new Error("Failed to fetch dog objects");
   }
