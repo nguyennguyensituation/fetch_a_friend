@@ -1,43 +1,33 @@
 import { useState, useEffect } from 'react';
 import { Dog, Query, PageNavUrls } from '@/app/lib/definitions';
 import styles from './filter.module.css'
-import { breedPlaceholder, fetchBreeds, handleQuery, fetchDogs } from '@/app/utils/filterUtils';
+import { breedPlaceholder, getBreedOptions, fetchBreeds, handleQuery } from '@/app/utils/filterUtils';
 
 export default function FilterForm(props: {
-  queryData: Query,
   setQueryData: (query: Query) => void,
   setResults: (results: Dog[]) => void,
   setResultsCount: (count: number) => void,
   setNextPrev: (urls: PageNavUrls) => void,
 }) {
   const [breeds, setBreeds] = useState<string[]>();
-  const breedOptions = (<>
-      <option value='any'>Any breed</option>
-      {breeds?.map((breed, idx) => {
-        return <option key={idx} value={breed}>{breed}</option>
-      })}
-    </>);
-  const { queryData,setQueryData, setResults, setResultsCount, setNextPrev } = props;
 
   useEffect(() => {
-      // Populate breed list and default Dog results on load
-      // fetchDogs(setResults, setResultsCount, setNextPrev, queryData);
       fetchBreeds(setBreeds);
     }, []);
 
   return (
-    <form className={styles.filter} onSubmit={(e) => {
+    <form className={styles.filter} onSubmit={(e: React.FormEvent) => {
       e.preventDefault();
-      handleQuery(e, setQueryData);
+      handleQuery(e, props.setQueryData);
       }}>
-      <h2>Find Dogs</h2>
+      <h2>Filter Dogs</h2>
       <fieldset>    
-        <label htmlFor='selectedBreeds'>I am interested in
+        <label htmlFor='selectedBreeds'>I am interested in&nbsp;
           <select name='selectedBreeds' multiple
             id='selectedBreeds'
             defaultValue={['any']}
             className={styles.breedOptions}>
-            {breeds ? breedOptions : breedPlaceholder}
+            {breeds ? getBreedOptions(breeds) : breedPlaceholder}
           </select>
           .
         </label>
@@ -49,8 +39,8 @@ export default function FilterForm(props: {
           <option value="desc">descending order (Z to A)</option>
         </select>
       </fieldset>
-      <button type="reset" className={styles.reset}>Reset filter</button>
-      <button type="submit">Filter</button>
+      <button type="reset" className={styles.reset} disabled={!breeds}>Reset filter</button>
+      <button type="submit" disabled={!breeds}>Filter</button>
     </form>
   );
 }

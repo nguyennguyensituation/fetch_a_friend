@@ -1,15 +1,5 @@
 import { Query } from '@/app/lib/definitions';
-
-function formatList(list: string[]): string {
-  if (list.length === 1) {
-    return list[0];
-  } else if (list.length === 2) {
-    return `${list[0]} and ${list[1]}}`;
-  } else {
-    // List formatted with Oxford comma!
-    return `${list.slice(0, -1).join(', ')}, and ${list[list.length - 1]}`;
-  }
-}
+import { formatList } from '@/app/utils/globalUtils';
 
 export function querySummary(query: Query, resultsCount: number): string {
   const { breeds, sort } = query;

@@ -6,7 +6,7 @@ import Summary from './Summary';
 import Results from './Results';
 import { Dog, Query, PageNavUrls } from '@/app/lib/definitions';
 import { defaultQuery, defaultNextPrev } from '@/app/utils/dogUtils';
-import { fetchDogs } from '@/app/utils/filterUtils';
+import { fetchDogs } from '@/app/utils/dogUtils';
 
 export default function Dogs() {
   const [queryData, setQueryData] = useState<Query>(defaultQuery);
@@ -21,7 +21,7 @@ export default function Dogs() {
   
   return (
     <section className={styles.dogs}>
-      <FilterForm queryData={queryData} setQueryData={setQueryData} setNextPrev={setNextPrev} setResults={setResults} setResultsCount={setResultsCount} />
+      <FilterForm setQueryData={setQueryData} setNextPrev={setNextPrev} setResults={setResults} setResultsCount={setResultsCount} />
       <Summary queryData={queryData} resultsCount={resultsCount} currentPage={currentPage}/>
       <Nav setResults={setResults} nextPrev={nextPrev} setNextPrev={setNextPrev} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       <Results results={results}/>
