@@ -18,7 +18,7 @@ export default function Card(props: {
 }) {
   const { age, breed, img, name, zip_code } = props.data;
   const ageDisplay = getAgeDisplay(age);
-  const altTextDisplay = `${ageDisplay} ${breed} dog named ${name}`
+  const altTextDisplay = `${ageDisplay} ${breed} named ${name}`
 
   return (
     <article className={styles.card}>
