@@ -4,11 +4,12 @@ import FilterForm from './Filter';
 import Nav from "./Nav"
 import Summary from './Summary';
 import Results from './Results';
-
 import { Dog, Query, PageNavUrls } from '@/app/lib/definitions';
 import { defaultQuery, defaultNextPrev, fetchDogs } from '@/app/utils/dogUtils';
 
-export default function Dogs() {
+export default function Dogs(props: {
+  setCurrentDog: (dog: Dog) => void
+}) {
   const [queries, setQueries] = useState<Query>(defaultQuery);
   const [results, setResults] = useState<Dog[]>([]);
   const [resultsCount, setResultsCount] = useState<number>(0);
@@ -29,7 +30,7 @@ export default function Dogs() {
       <Summary queries={queries}
         resultsCount={resultsCount}
         currentPage={currentPage}/>
-      <Results results={results} />
+      <Results results={results} setCurrentDog={props.setCurrentDog}/>
       <Nav setResults={setResults}
         nextPrev={nextPrev}
         setNextPrev={setNextPrev}

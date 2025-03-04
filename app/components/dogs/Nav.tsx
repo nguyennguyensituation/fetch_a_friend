@@ -19,7 +19,7 @@ export default function Nav(props: {
   return ( 
     <nav className={styles.nav}>
         {prevBtn}
-        <p>Page {currentPage} of {lastPage}</p>
+        {lastPage > 0 && <p>Page {currentPage} of {lastPage}</p>}
         {nextBtn}       
     </nav>
   );

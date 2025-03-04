@@ -6,6 +6,7 @@
   text-align: left;
   height: auto;
   width: auto;
+  cursor: pointer;
 }
 
 .card figure {

@@ -5,9 +5,15 @@ import Card from './Card';
 
 export default function Results(props: {
   results: Dog[];
+  setCurrentDog: (dog: Dog) => void
 }) {
   const resultsRef = useRef<HTMLDivElement>(null);
-  const dogCards = props.results?.map((dog, idx) => <Card data={dog} key={idx} isPriority={idx === 0}/>);
+  const dogCards = props.results?.map((dog, idx) => {
+    return <Card data={dog} 
+      key={idx}
+      isPriority={idx === 0}
+      setCurrentDog={props.setCurrentDog}/>
+  });
 
   useEffect(() => {
     if (resultsRef.current) {
@@ -18,7 +24,7 @@ export default function Results(props: {
 
   return (
     <div className={styles.resultsContainer} ref={resultsRef} >
-    {dogCards ? dogCards : <p>(No results found)</p>}
+      {dogCards ? dogCards : <p>(No results found)</p>}
     </div>
   );
 }

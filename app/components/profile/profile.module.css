@@ -1,0 +1,19 @@
+.profile {
+  background-color: white;
+  color: black;
+  padding: 20px 20px 20px 0;
+}
+
+.profile figure {
+  margin-block: 0;
+  margin-inline: 0;
+  text-align: center;
+}
+
+.details {
+  padding: 20px;
+}
+
+.details h4 {
+  padding: 0;
+}

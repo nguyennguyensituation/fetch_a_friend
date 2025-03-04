@@ -14,14 +14,15 @@ function getAgeDisplay(age: number): string {
 
 export default function Card(props: {
   data: Dog,
-  isPriority: boolean
+  isPriority: boolean,
+  setCurrentDog: (dog: Dog) => void
 }) {
   const { age, breed, img, name, zip_code } = props.data;
   const ageDisplay = getAgeDisplay(age);
   const altTextDisplay = `${ageDisplay} ${breed} named ${name}`
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} onClick={() => props.setCurrentDog(props.data)}>
       <figure>
         <div className={styles.imgContainer}>
           <Image src={img}
