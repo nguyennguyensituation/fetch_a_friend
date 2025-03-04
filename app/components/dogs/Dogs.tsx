@@ -29,7 +29,7 @@ export default function Dogs() {
       <Summary queries={queries}
         resultsCount={resultsCount}
         currentPage={currentPage}/>
-      <Results results={results}/>
+      <Results results={results} />
       <Nav setResults={setResults}
         nextPrev={nextPrev}
         setNextPrev={setNextPrev}
