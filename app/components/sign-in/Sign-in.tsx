@@ -21,7 +21,8 @@ export default function SignIn(props: {
         <input id="name"
           type="text"
           name="name"
-          placeholder="Enter your username"
+          maxLength={30}
+          placeholder="Enter your username (up to 30 characters)"
           required />
       </fieldset>
       
@@ -30,6 +31,7 @@ export default function SignIn(props: {
         <input id="email"
           type="email"
           name="email"
+          maxLength={320}
           placeholder="Enter your email address"
           required />
       </fieldset>
