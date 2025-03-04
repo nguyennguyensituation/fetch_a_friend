@@ -1,7 +1,8 @@
 import styles from '../header/header.module.css';
 
 export default function Header(props: {
-  username: string
+  username: string,
+  favoritesCount: number
 }) {
   const username = props.username;
   return (
@@ -12,8 +13,8 @@ export default function Header(props: {
       </div>
     <nav className={styles.nav}>
       {username && 
-      <p>Hello, <span className={styles.username}>{username}</span>
-      !</p>}
+      <p>Hello, <span className={styles.username}>{username}</span>!</p>}
+      <p>Favorite dogs: {props.favoritesCount}</p>
     </nav>
     
   </header>

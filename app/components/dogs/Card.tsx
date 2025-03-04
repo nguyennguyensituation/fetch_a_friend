@@ -1,16 +1,7 @@
 import styles from './card.module.css';
 import Image from 'next/image';
 import { Dog } from '@/app/lib/definitions';
-
-function getAgeDisplay(age: number): string {
-  if (age < 1) {
-    return "Under a year old"
-  } else if (age === 1) {
-    return "1 year old"
-  } else {
-    return `${age} years old`
-  }
-}
+import { getAgeDisplay } from '@/app/utils/globalUtils';
 
 export default function Card(props: {
   data: Dog,

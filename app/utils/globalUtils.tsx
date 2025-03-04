@@ -10,3 +10,13 @@ export function formatList(list: string[]): string {
     return `${list.slice(0, -1).join(', ')}, and ${list[list.length - 1]}`;
   }
 }
+
+export function getAgeDisplay(age: number): string {
+  if (age < 1) {
+    return "Under a year old"
+  } else if (age === 1) {
+    return "1 year old"
+  } else {
+    return `${age} years old`
+  }
+}

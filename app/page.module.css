@@ -2,8 +2,3 @@
   display: grid;
   grid-template-columns: 70% auto;
 }
-
-.sideContainer {
-  display: grid;
-  grid-template-rows: 50% auto;
-}

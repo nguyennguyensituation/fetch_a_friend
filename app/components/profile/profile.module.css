@@ -1,19 +1,63 @@
 .profile {
-  background-color: white;
-  color: black;
+  background-color: lightgoldenrodyellow;
   padding: 20px 20px 20px 0;
+  height: 100%;
 }
 
 .profile figure {
   margin-block: 0;
   margin-inline: 0;
-  text-align: center;
+}
+
+.profile img {
+  width: 100%;
+  height: auto;
 }
 
 .details {
-  padding: 20px;
+  height: 180px;
+  padding-left: 20px;
+  display: grid;
+  grid-template-areas:
+    'name name name btn'
+    'breed breed breed breed'
+    'age age age age'
+    'zip zip zip zip';
 }
 
-.details h4 {
-  padding: 0;
+.name {
+  grid-area: name;
 }
+
+.btn {
+  grid-area: btn;
+  padding: 5px 0;
+  height: 40px;
+  width: 140px;
+  background-color: inherit;
+  padding-block: 0;
+  justify-self: end;
+}
+
+.btn:hover {
+  color: tomato;
+  background-color: inherit;
+}
+
+.selected {
+  color: red;
+}
+
+.breed {
+  grid-area: breed;
+}
+
+.zip {
+  grid-area: zip;
+}
+
+.details h2 {
+  padding-bottom: 20px;
+}
+
+
