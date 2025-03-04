@@ -8,8 +8,8 @@ import { Dog, Query, PageNavUrls } from '@/app/lib/definitions';
 import { defaultQuery, defaultNextPrev, fetchDogs } from '@/app/utils/dogUtils';
 
 export default function Dogs(props: {
-  setCurrentDog: (dog: Dog) => void
-}) {
+  setCurrentDog: (dog: Dog) => void,
+  setDisplayFaves: (display: boolean) => void}) {
   const [queries, setQueries] = useState<Query>(defaultQuery);
   const [results, setResults] = useState<Dog[]>([]);
   const [resultsCount, setResultsCount] = useState<number>(0);
@@ -30,7 +30,7 @@ export default function Dogs(props: {
       <Summary queries={queries}
         resultsCount={resultsCount}
         currentPage={currentPage}/>
-      <Results results={results} setCurrentDog={props.setCurrentDog}/>
+      <Results results={results} setCurrentDog={props.setCurrentDog} setDisplayFaves={props.setDisplayFaves}/>
       <Nav setResults={setResults}
         nextPrev={nextPrev}
         setNextPrev={setNextPrev}

@@ -32,11 +32,11 @@ button {
   border: none;
   border-radius: 10px;
   font-size: 1em;
+  background-color: inherit;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: cornflowerblue;
 }
 
 p {

@@ -6,16 +6,18 @@ import { getAgeDisplay } from '@/app/utils/globalUtils';
 export default function Card(props: {
   data: Dog,
   isPriority: boolean,
-  setCurrentDog: (dog: Dog) => void
-}) {
+  setCurrentDog: (dog: Dog) => void,
+  setDisplayFaves: (display: boolean) => void}) {
   const { age, breed, img, name, zip_code } = props.data;
   const ageDisplay = getAgeDisplay(age);
   const altTextDisplay = `${ageDisplay} ${breed} named ${name}`
 
   return (
-    <article className={styles.card} onClick={() => props.setCurrentDog(props.data)}>
+    <article className={styles.card} onClick={() => {
+      props.setCurrentDog(props.data);
+      props.setDisplayFaves(false);
+      }}>
       <figure>
-        <div className={styles.imgContainer}>
           <Image src={img}
             alt={altTextDisplay}
             fill
@@ -23,7 +25,6 @@ export default function Card(props: {
             sizes="(max-width: 200px) 100vw, 100vw"
             priority={props.isPriority}
           />
-        </div>
       </figure>
       <div className={styles.info}>
         <h4 className={styles.name}>{name}</h4>

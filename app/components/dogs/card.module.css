@@ -12,9 +12,6 @@
 .card figure {
   margin-block: 0;
   margin-inline: 0;
-}
-
-.imgContainer {
   position: relative;
   background-color: black;
   width: 100%;

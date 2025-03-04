@@ -2,3 +2,75 @@
   background-color: cornsilk;
   padding: 20px;
 }
+
+.favorites h2 {
+  padding-bottom: 20px;
+}
+
+.faveContainer {
+  height: 500px;
+  overflow: scroll;
+  border-bottom: solid 1px black;
+}
+
+.item {
+  height: 100px;
+  border-bottom: solid 1px black;
+  display: grid;
+  grid-template-columns: 100px auto 40px;
+}
+
+.item:first-of-type {
+  margin-top: 10px;
+  border-top: solid 1px black;
+}
+
+.item button {
+  font-size: 2.5em;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 0;
+  padding: 0;
+}
+
+.item button:hover {
+  color: tomato;
+}
+
+.item figure {
+  margin-block: 0;
+  margin-inline: 0;
+  width: 100%;
+  min-height: 100px;
+  background-color: black;
+}
+
+.details {
+  padding: 10px;
+  font-size: 0.9em;
+}
+
+.details p:first-of-type {
+  font-size: 1.2em;
+}
+
+.matchContainer {
+  background-color: inherit;
+  border: solid 1px black;
+  height: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+.matchContainer p {
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.matchContainer button {
+  border: solid 1px black;
+}
+
+.matchContainer button:hover {
+  background-color: tomato;
+}

@@ -2,7 +2,6 @@ import { Query, PageNavUrls } from '@/app/lib/definitions';
 import { BASE_URL } from './globalUtils';
 import { defaultNextPrev } from '@/app/utils/dogUtils';
 
-
 export const breedPlaceholder = (<option>Loading breeds...</option>);
 
 // Populates data for breeds dropdown menu

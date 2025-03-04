@@ -13,21 +13,26 @@ export default function Page() {
   const [username, setUsername] = useState<string>('');
   const [currentDog, setCurrentDog] = useState<Dog>();
   const [favorites, setFavorites] = useState<Dog[]>([]);
-
-  console.log("========> faves:");
-  favorites.forEach(dog => console.log(dog.name));
+  const [displayFaves, setDisplayFaves] = useState<boolean>(false);
 
   return (
     <div>
-      <Header username={username} favoritesCount={favorites.length}/>
+      <Header username={username}
+        favoritesCount={favorites.length}
+        setDisplayFaves={setDisplayFaves}/>
       <main>
         {!username && <SignIn setUsername={setUsername}/>}
         {username && <div className={styles.mainContainer}>
-          <Dogs setCurrentDog={setCurrentDog}/>
+          <Dogs setCurrentDog={setCurrentDog}
+            setDisplayFaves={setDisplayFaves}/>
           <div>
+          {displayFaves ?
+            <Favorites favorites={favorites}
+              setFavorites={setFavorites}/> :
             <Profile currentDog={currentDog}
-              favorites={favorites}
-              setFavorites={setFavorites}/>
+            favorites={favorites}
+            setFavorites={setFavorites}/>
+          }
           </div>
         </div>}
       </main>

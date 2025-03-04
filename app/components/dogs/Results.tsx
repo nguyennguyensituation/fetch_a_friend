@@ -5,21 +5,21 @@ import Card from './Card';
 
 export default function Results(props: {
   results: Dog[];
-  setCurrentDog: (dog: Dog) => void
-}) {
+  setCurrentDog: (dog: Dog) => void,
+  setDisplayFaves: (display: boolean) => void}) {
   const resultsRef = useRef<HTMLDivElement>(null);
   const dogCards = props.results?.map((dog, idx) => {
     return <Card data={dog} 
       key={idx}
       isPriority={idx === 0}
-      setCurrentDog={props.setCurrentDog}/>
+      setCurrentDog={props.setCurrentDog}
+      setDisplayFaves={props.setDisplayFaves}/>
   });
 
   useEffect(() => {
     if (resultsRef.current) {
       resultsRef.current.scrollTop = 0;
     }
-   
   }, [props.results]);
 
   return (

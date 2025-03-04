@@ -12,8 +12,36 @@
   text-transform: capitalize;
 }
 
-.nav {
-  background-color: pink;
+.greeting {
+  grid-area: greeting;
+  padding: 20px;
   text-align: right;
-  padding: 10px 20px;
 }
+
+.signout {
+  grid-area: signout;
+  text-align: right;
+}
+
+.favorites {
+  text-align: left;
+  grid-area: favorites;
+  padding-left: 0;
+}
+
+.nav {
+  display: grid;
+  grid-template-areas:
+    'greeting greeting'
+    'favorites signout';
+  grid-template-rows: auto 40px;
+}
+
+.nav button {
+  border-radius: 0;
+  text-decoration: underline;
+}
+
+
+
+

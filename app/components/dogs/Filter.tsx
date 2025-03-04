@@ -42,7 +42,7 @@ export default function FilterForm(props: {
       </fieldset>
       <div className={styles.buttonContainer}>
         <button type="reset" className={styles.reset} disabled={!breeds}>Reset filter</button>
-        <button type="submit" disabled={!breeds}>Filter</button>
+        <button type="submit" className={styles.submit} disabled={!breeds}>Filter</button>
       </div>
       
     </form>
