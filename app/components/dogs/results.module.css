@@ -1,6 +1,9 @@
 .resultsContainer {
   padding: 10px;
   display: grid;
-  grid-gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  grid-gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  background-color: cornflowerblue;
+  max-height: 650px;
+  overflow: scroll;
 }

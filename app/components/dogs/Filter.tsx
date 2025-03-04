@@ -21,8 +21,8 @@ export default function FilterForm(props: {
       e.preventDefault();
       handleQuery(e, props.setQueries, props.setNextPrev, props.setCurrentPage);
       }}>
-      <h2>Filter Dogs</h2>
-      <fieldset>    
+      <h2 className={styles.title}>Filter Dogs</h2>
+      <fieldset className={styles.breeds}>    
         <label htmlFor='selectedBreeds'>Selected breed(s):&nbsp;
           <select name='selectedBreeds' multiple
             id='selectedBreeds'
@@ -33,15 +33,18 @@ export default function FilterForm(props: {
           .
         </label>
       </fieldset>
-      <fieldset>
+      <fieldset className={styles.sortBreeds}>
         <label htmlFor='sortBreeds'>Sort breed(s) from</label>
         <select name='sortBreeds' id='sortBreeds' defaultValue="asc">
           <option value="asc" >A to Z</option>
           <option value="desc">Z to A</option>
         </select>
       </fieldset>
-      <button type="reset" className={styles.reset} disabled={!breeds}>Reset filter</button>
-      <button type="submit" disabled={!breeds}>Filter</button>
+      <div className={styles.buttonContainer}>
+        <button type="reset" className={styles.reset} disabled={!breeds}>Reset filter</button>
+        <button type="submit" disabled={!breeds}>Filter</button>
+      </div>
+      
     </form>
   );
 }

@@ -1,8 +1,10 @@
 .summary {
-  padding: 20px 0;
   font-style: italic;
+  border-top: none;
+  background-color: cornflowerblue;
+  padding: 10px 20px;
 }
 
-.summary ul {
-  margin: 10px 0 20px 0;
+.summary p:first-child {
+  padding: 10px 0;
 }

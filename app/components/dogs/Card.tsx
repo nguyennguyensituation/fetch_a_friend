@@ -22,20 +22,19 @@ export default function Card(props: {
 
   return (
     <article className={styles.card}>
-      <h4 className={styles.dogName}>{name}</h4>
       <figure>
         <div className={styles.imgContainer}>
-          <Image
-          src={img}
-          alt={altTextDisplay}
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          sizes="(max-width: 300px) 100vw, 100vw"
-          priority={props.isPriority}
+          <Image src={img}
+            alt={altTextDisplay}
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            sizes="(max-width: 200px) 100vw, 100vw"
+            priority={props.isPriority}
           />
         </div>
       </figure>
-      <div className={styles.caption}>
+      <div className={styles.info}>
+        <h4 className={styles.name}>{name}</h4>
         <p>{breed}</p>
         <p>{ageDisplay}</p>
         <p>ZIP code: {zip_code}</p>

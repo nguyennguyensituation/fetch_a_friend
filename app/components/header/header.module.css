@@ -1,10 +1,11 @@
 .header {
   background-color: tomato;
-  padding: 20px 20px;
+  display: grid;
+  grid-template-columns: 70% auto;
 }
 
-.header h1 {
-  padding: 20px 0;
+.logo {
+  padding: 10px 20px;
 }
 
 .username {
@@ -12,5 +13,7 @@
 }
 
 .nav {
-  padding: 20px 0;
+  background-color: pink;
+  text-align: right;
+  padding: 10px 20px;
 }

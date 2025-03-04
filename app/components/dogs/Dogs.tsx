@@ -4,6 +4,7 @@ import FilterForm from './Filter';
 import Nav from "./Nav"
 import Summary from './Summary';
 import Results from './Results';
+
 import { Dog, Query, PageNavUrls } from '@/app/lib/definitions';
 import { defaultQuery, defaultNextPrev, fetchDogs } from '@/app/utils/dogUtils';
 
@@ -28,13 +29,13 @@ export default function Dogs() {
       <Summary queries={queries}
         resultsCount={resultsCount}
         currentPage={currentPage}/>
+      <Results results={results}/>
       <Nav setResults={setResults}
         nextPrev={nextPrev}
         setNextPrev={setNextPrev}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         resultsCount={resultsCount}/>
-      <Results results={results}/>
     </section>
   );
 }
