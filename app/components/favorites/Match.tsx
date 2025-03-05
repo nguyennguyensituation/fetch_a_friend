@@ -34,16 +34,16 @@ function HeroDog(props: {
 }
 
 export default function Match(props: {
-  favorites: Dog[],
+  selectedDogs: Dog[],
   heroDog?: Dog,
   setHeroDog: (dog: Dog) => void }) {
-  const isEmpty = props.favorites.length === 0;
+  const isEmpty = props.selectedDogs.length === 0;
 
   return (
     <div className={styles.matchContainer}>
       <p>After you&apos;ve finished selecting your favorite dogs, get matched with a new four-legged friend.</p>
       <button disabled={isEmpty} onClick={(e: React.MouseEvent) => {
-       getMatch(e, props.favorites, props.setHeroDog); 
+       getMatch(e, props.selectedDogs, props.setHeroDog); 
       }}>
         Find my match!
       </button>

@@ -6,8 +6,8 @@ import { removeFromFavorites } from '@/app/utils/favoritesUtils';
 
 export default function Item(props: {
   dog: Dog,
-  favorites: Dog[],
-  setFavorites: (favorites: Dog[]) => void }) {
+  selectedDogs: Dog[],
+  setSelectedDogs: (selectedDogs: Dog[]) => void }) {
     const { age, breed, img, name, id, zip_code } = props.dog;
     const ageDisplay = getAgeDisplay(age);
     const altTextDisplay = `${ageDisplay} ${breed} named ${name}`;
@@ -29,7 +29,7 @@ export default function Item(props: {
           <p>ZIP code: {zip_code}</p>
         </div>  
         <button onClick={(e: React.MouseEvent) => {
-          removeFromFavorites(e, id, props.favorites, props.setFavorites);
+          removeFromFavorites(e, id, props.selectedDogs, props.setSelectedDogs);
           }}>
           &times;
         </button>

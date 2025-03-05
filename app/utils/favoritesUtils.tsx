@@ -3,9 +3,7 @@ import { Dog } from '@/app/lib/definitions';
 export function removeFromFavorites(e: React.MouseEvent,
   id: string,
   favorites: Dog[],
-  setFavorites: (favorites: Dog[]) => void) {
+  setFavorites: (favorites: Dog[]) => void): void {
   e.preventDefault();
-
-  const updatedFaves = favorites.filter(dog => dog.id !== id);
-  setFavorites(updatedFaves);
+  setFavorites(favorites.filter(dog => dog.id !== id));
 }

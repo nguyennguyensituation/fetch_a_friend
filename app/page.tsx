@@ -12,14 +12,14 @@ import { useState } from "react";
 export default function Page() {
   const [username, setUsername] = useState<string>('');
   const [currentDog, setCurrentDog] = useState<Dog>();
-  const [favorites, setFavorites] = useState<Dog[]>([]);
+  const [selectedDogs, setSelectedDogs] = useState<Dog[]>([]);
   const [displayFaves, setDisplayFaves] = useState<boolean>(true);
   const [heroDog, setHeroDog] = useState<Dog>();
 
   return (
     <div>
       <Header username={username}
-        favoritesCount={favorites.length}
+        favoritesCount={selectedDogs.length}
         setDisplayFaves={setDisplayFaves}/>
       <main>
         {!username && <SignIn setUsername={setUsername}/>}
@@ -28,13 +28,13 @@ export default function Page() {
             setDisplayFaves={setDisplayFaves}/>
           <div>
           {displayFaves ?
-            <Favorites favorites={favorites}
-              setFavorites={setFavorites}
+            <Favorites selectedDogs={selectedDogs}
+              setSelectedDogs={setSelectedDogs}
               heroDog={heroDog}
               setHeroDog={setHeroDog}/> :
             <Profile currentDog={currentDog}
-            favorites={favorites}
-            setFavorites={setFavorites}/>
+            selectedDogs={selectedDogs}
+            setSelectedDogs={setSelectedDogs}/>
           }
           </div>
         </div>}

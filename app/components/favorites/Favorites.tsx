@@ -4,19 +4,19 @@ import Item from './Item';
 import Match from './Match';
 
 export default function Favorites(props: {
-  favorites: Dog[],
-  setFavorites: (favorites: Dog[]) => void,
+  selectedDogs: Dog[],
+  setSelectedDogs: (selectedDogs: Dog[]) => void,
   heroDog?: Dog,
   setHeroDog: (dog: Dog) => void }) {
-  const faves = props.favorites;
+  const faves = props.selectedDogs;
   const total = faves.length;
   const totalDisplay = total === 1 ? '1 dog' : `${total} dogs`
   const faveList = (faves.map((dog: Dog, idx: number) => {
     return <Item 
       key={idx}
       dog={dog}
-      favorites={faves}
-      setFavorites={props.setFavorites}/>;
+      selectedDogs={faves}
+      setSelectedDogs={props.setSelectedDogs}/>;
     }));
 
   return (
@@ -31,7 +31,7 @@ export default function Favorites(props: {
           </>
         }
       </div>
-      <Match favorites={faves} heroDog={props.heroDog} setHeroDog={props.setHeroDog}/>
+      <Match selectedDogs={faves} heroDog={props.heroDog} setHeroDog={props.setHeroDog}/>
     </section>
   );
 }
