@@ -1,12 +1,12 @@
 .matchContainer {
   background-color: inherit;
-  height: 390px;
+  height: 440px;
   text-align: center;
 }
 
 .matchContainer p {
   text-align: left;
-  padding: 20px 0;
+  padding: 20px 0px;
 }
 
 .matchContainer button {
@@ -41,9 +41,10 @@
 }
 
 .details p {
-  padding: 10px 0;
+  padding: 10px;
 }
 
 .details h3 {
   text-align: left;
+  padding: 10px;
 }

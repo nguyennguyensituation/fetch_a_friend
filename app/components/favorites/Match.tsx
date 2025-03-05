@@ -41,7 +41,7 @@ export default function Match(props: {
 
   return (
     <div className={styles.matchContainer}>
-      <p>Once you&apos;ve finished selecting your favorite dogs, you can get matched with a new four-legged friend.</p>
+      <p>After you&apos;ve finished selecting your favorite dogs, get matched with a new four-legged friend.</p>
       <button disabled={isEmpty} onClick={(e: React.MouseEvent) => {
        getMatch(e, props.favorites, props.setHeroDog); 
       }}>

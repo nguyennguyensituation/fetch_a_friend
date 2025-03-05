@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from '../favorites/favorites.module.css';
 import { Dog } from '@/app/lib/definitions';
 import Item from './Item';

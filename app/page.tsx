@@ -13,7 +13,7 @@ export default function Page() {
   const [username, setUsername] = useState<string>('');
   const [currentDog, setCurrentDog] = useState<Dog>();
   const [favorites, setFavorites] = useState<Dog[]>([]);
-  const [displayFaves, setDisplayFaves] = useState<boolean>(false);
+  const [displayFaves, setDisplayFaves] = useState<boolean>(true);
   const [heroDog, setHeroDog] = useState<Dog>();
 
   return (

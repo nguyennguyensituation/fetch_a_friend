@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Dog } from '@/app/lib/definitions';
 import Image from 'next/image';
 import styles from './profile.module.css';
@@ -44,7 +43,7 @@ export default function Profile(props: {
           <button className={styles.btn}
             onClick={(e) => {
               e.preventDefault();
-              currentDog && toggleFavorite(currentDog, favorites, setFavorites);
+              if (currentDog) toggleFavorite(currentDog, favorites, setFavorites);
             }}>
               {buttonText}
           </button>

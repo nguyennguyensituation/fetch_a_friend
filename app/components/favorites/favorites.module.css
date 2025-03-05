@@ -8,7 +8,7 @@
 }
 
 .faveContainer {
-  height: 450px;
+  height: 400px;
   overflow: scroll;
   border-bottom: solid 1px black;
 }
