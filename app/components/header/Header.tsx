@@ -22,7 +22,7 @@ export default function Header(props: {
         <h3 className={styles.greeting}>Hello, <span className={styles.username}>{username}</span>!</h3>
         <button className={styles.favorites} onClick={(e: React.MouseEvent) => {
           showFavorites(e, props.setDisplayFaves);
-        }}>Favorite dogs: {props.favoritesCount}</button>
+        }}>Favorite dogs total: {props.favoritesCount}</button>
          <button className={styles.signout}>Sign out</button>
       </nav>}
   </header>

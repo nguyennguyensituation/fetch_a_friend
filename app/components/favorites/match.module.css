@@ -4,6 +4,11 @@
   text-align: center;
 }
 
+.matchContainer h2 {
+  text-align: left;
+  padding: 20px 0 0;
+}
+
 .matchContainer p {
   text-align: left;
   padding: 20px 0px;

@@ -4,6 +4,7 @@
   border-bottom: solid 1px black;
   display: grid;
   grid-template-columns: 100px auto 40px;
+  cursor: pointer;
 }
 
 .item:first-of-type {

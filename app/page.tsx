@@ -33,7 +33,9 @@ export default function Page() {
             <Favorites selectedDogs={selectedDogs}
               setSelectedDogs={setSelectedDogs}
               heroDog={heroDog}
-              setHeroDog={setHeroDog}/> :
+              setHeroDog={setHeroDog}
+              setCurrentDog={setCurrentDog}
+              setDisplayFaves={setDisplayFaves}/> :
             <Profile currentDog={currentDog}
             selectedDogs={selectedDogs}
             setSelectedDogs={setSelectedDogs}/>

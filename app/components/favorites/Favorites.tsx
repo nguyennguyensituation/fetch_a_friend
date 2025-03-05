@@ -2,12 +2,15 @@ import styles from '../favorites/favorites.module.css';
 import { Dog } from '@/app/lib/definitions';
 import Item from './Item';
 import Match from './Match';
+import { handleSelect } from '@/app/utils/favoritesUtils';
 
 export default function Favorites(props: {
   selectedDogs: Dog[],
   setSelectedDogs: (selectedDogs: Dog[]) => void,
   heroDog?: Dog,
-  setHeroDog: (dog: Dog) => void }) {
+  setHeroDog: (dog: Dog) => void,
+  setCurrentDog: (dog: Dog) => void,
+  setDisplayFaves: (display: boolean) => void }) {
   const faves = props.selectedDogs;
   const total = faves.length;
   const totalDisplay = total === 1 ? '1 dog' : `${total} dogs`
@@ -16,7 +19,10 @@ export default function Favorites(props: {
       key={idx}
       dog={dog}
       selectedDogs={faves}
-      setSelectedDogs={props.setSelectedDogs}/>;
+      setSelectedDogs={props.setSelectedDogs}
+      handleSelect={(e: React.MouseEvent) => {
+        handleSelect(e, dog, props.setCurrentDog, props.setDisplayFaves)
+      } }/>;
     }));
 
   return (

@@ -7,13 +7,14 @@ import { removeFromFavorites } from '@/app/utils/favoritesUtils';
 export default function Item(props: {
   dog: Dog,
   selectedDogs: Dog[],
-  setSelectedDogs: (selectedDogs: Dog[]) => void }) {
+  setSelectedDogs: (selectedDogs: Dog[]) => void,
+  handleSelect: (e: React.MouseEvent) => void }) {
     const { age, breed, img, name, id, zip_code } = props.dog;
     const ageDisplay = getAgeDisplay(age);
     const altTextDisplay = `${ageDisplay} ${breed} named ${name}`;
 
     return (
-      <article className={styles.item}>
+      <article className={styles.item} onClick={props.handleSelect}>
         <figure>
           <Image src={img}
             alt={altTextDisplay}
@@ -29,6 +30,7 @@ export default function Item(props: {
           <p>ZIP code: {zip_code}</p>
         </div>  
         <button onClick={(e: React.MouseEvent) => {
+          e.stopPropagation();
           removeFromFavorites(e, id, props.selectedDogs, props.setSelectedDogs);
           }}>
           &times;
