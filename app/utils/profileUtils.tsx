@@ -1,11 +1,13 @@
 import { Dog } from '@/app/lib/definitions';
 
 export function alreadySelected(id: string,
-  selectedDogs: Dog[] ): boolean {
+  selectedDogs: Dog[]): boolean {
+  if (selectedDogs.length === 0) return false;
+
   return selectedDogs.some((fave: Dog) => fave.id === id);
 }
 
-export function toggleFavoriteDisplay(dog: Dog,
+export function updateSelectedDogsDisplay(dog: Dog,
   selectedDogs: Dog[],
   setSelectedDogs: (dogs: Dog[]) => void ): void {
   

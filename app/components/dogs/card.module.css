@@ -18,15 +18,55 @@
   min-height: 200px;
 }
 
-.info {
+.detail {
   padding: 10px;
-}
-
-.info h4 {
-  font-size: 1em;
-  margin: 0;
-}
-
-.info p {
   font-size: 0.8em;
+  display: grid;
+  grid-template:
+    'name name name name name name name name btn'
+    'breed breed breed breed breed breed breed breed breed'
+    'age age age age age age age age age'
+    'zip zip zip zip zip zip zip zip zip';
+}
+
+.detail h4 {
+  font-size: 1.2em;
+  margin: 0;
+  grid-area: name;
+}
+
+.detail button {
+  min-width: 10px;
+  min-width: 20px;
+  padding: 10px;
+  padding-block: 0;
+  padding-inline: 0;
+  border-radius: 0;
+  grid-area: btn;
+  border-radius: 5px;
+  font-size: 1.5em;
+}
+
+.detail button:hover {
+  color: tomato;
+}
+
+.breed {
+  grid-area: breed;
+}
+
+.age {
+  grid-area: age;
+}
+
+.zip {
+  grid-area: zip;
+}
+
+.selected {
+  color: tomato;
+}
+
+button.selected:hover {
+  color: gray;
 }

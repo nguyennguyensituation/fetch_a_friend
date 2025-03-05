@@ -6,8 +6,10 @@ import { getAgeDisplay } from '@/app/utils/globalUtils';
 export default function Card(props: {
   data: Dog,
   isPriority: boolean,
+  handleSelect: (e: React.MouseEvent) => void,
   setCurrentDog: (dog: Dog) => void,
-  setDisplayFaves: (display: boolean) => void}) {
+  setDisplayFaves: (display: boolean) => void,
+  isSelected: boolean }) {
   const { age, breed, img, name, zip_code } = props.data;
   const ageDisplay = getAgeDisplay(age);
   const altTextDisplay = `${ageDisplay} ${breed} named ${name}`
@@ -26,11 +28,13 @@ export default function Card(props: {
             priority={props.isPriority}
           />
       </figure>
-      <div className={styles.info}>
+      <div className={styles.detail}>
         <h4 className={styles.name}>{name}</h4>
-        <p>{breed}</p>
-        <p>{ageDisplay}</p>
-        <p>ZIP code: {zip_code}</p>
+        <button className={props.isSelected ? styles.selected : ''}
+          onClick={props.handleSelect}>&#9829;</button>
+        <p className={styles.breed}>{breed}</p>
+        <p className={styles.age}>{ageDisplay}</p>
+        <p className={styles.zip}>ZIP code: {zip_code}</p>
       </div>
     </article>
   );

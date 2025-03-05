@@ -25,7 +25,9 @@ export default function Page() {
         {!username && <SignIn setUsername={setUsername}/>}
         {username && <div className={styles.mainContainer}>
           <Dogs setCurrentDog={setCurrentDog}
-            setDisplayFaves={setDisplayFaves}/>
+            setDisplayFaves={setDisplayFaves}
+            selectedDogs={selectedDogs}
+            setSelectedDogs={setSelectedDogs}/>
           <div>
           {displayFaves ?
             <Favorites selectedDogs={selectedDogs}

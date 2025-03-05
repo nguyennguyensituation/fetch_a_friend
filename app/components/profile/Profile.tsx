@@ -2,7 +2,7 @@ import { Dog } from '@/app/lib/definitions';
 import Image from 'next/image';
 import styles from './profile.module.css';
 import { getAgeDisplay } from '@/app/utils/globalUtils';
-import { toggleFavoriteDisplay, alreadySelected } from '@/app/utils/profileUtils';
+import { updateSelectedDogsDisplay, alreadySelected } from '@/app/utils/profileUtils';
 
 export default function Profile(props: {
   currentDog?: Dog,
@@ -19,7 +19,7 @@ export default function Profile(props: {
       <span>&#9829; Save</span>;
     const handleClick = (e: React.MouseEvent) => {
       e.preventDefault();
-      if (currentDog) toggleFavoriteDisplay(currentDog, selectedDogs, setSelectedDogs);
+      if (currentDog) updateSelectedDogsDisplay(currentDog, selectedDogs, setSelectedDogs);
     }
 
     return (
