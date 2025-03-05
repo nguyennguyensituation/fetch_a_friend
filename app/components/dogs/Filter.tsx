@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Dog, Query, PageNavUrls } from '@/app/lib/definitions';
 import styles from './filter.module.css'
-import { breedPlaceholder, getBreedOptions, fetchBreeds, handleQuery } from '@/app/utils/filterUtils';
+import { breedPlaceholder, getBreedOptions, fetchBreeds, handleQuery, getAgeOptions } from '@/app/utils/filterUtils';
 
 export default function FilterForm(props: {
   setQueries: (queries: Query) => void,
@@ -22,6 +22,7 @@ export default function FilterForm(props: {
       handleQuery(e, props.setQueries, props.setNextPrev, props.setCurrentPage);
       }}>
       <h2 className={styles.title}>Filter Dogs</h2>
+
       <fieldset className={styles.breeds}>    
         <label htmlFor='selectedBreeds'>Selected breed(s):&nbsp;
           <select name='selectedBreeds' multiple
@@ -30,9 +31,31 @@ export default function FilterForm(props: {
             className={styles.breedOptions}>
             {breeds ? getBreedOptions(breeds) : breedPlaceholder}
           </select>
-          .
         </label>
       </fieldset>
+
+      <fieldset className={styles.ageMin}>    
+        <label htmlFor='ageMin'>Age min:&nbsp;
+          <select name='ageMin'
+            id='ageMin'
+            defaultValue={'0'}
+            className={styles.ageMin}>
+            {getAgeOptions(true)}
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset className={styles.ageMax}>    
+        <label htmlFor='ageMax'>Age max:&nbsp;
+          <select name='ageMax'
+            id='ageMax'
+            defaultValue={'25'}
+            className={styles.ageMax}>
+            {getAgeOptions(false)}
+          </select>
+        </label>
+      </fieldset>
+
       <fieldset className={styles.sortBreeds}>
         <label htmlFor='sortBreeds'>Sort breed(s) from</label>
         <select name='sortBreeds' id='sortBreeds' defaultValue="asc">
@@ -40,6 +63,7 @@ export default function FilterForm(props: {
           <option value="desc">Z to A</option>
         </select>
       </fieldset>
+
       <div className={styles.buttonContainer}>
         <button type="reset" className={styles.reset} disabled={!breeds}>Reset filter</button>
         <button type="submit" className={styles.submit} disabled={!breeds}>Filter</button>

@@ -42,3 +42,17 @@ export function getBreedOptions(breeds?: string[]) {
     </>
   );
 }
+
+export function getAgeOptions(isMin: boolean) {
+  const defaultOption = isMin ?'0' : '25';
+  const ages = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+
+  return (
+    <>
+      <option value={defaultOption}>Any age</option>
+      {ages.map((num, idx) => {
+        return <option key={idx} value={num}>{num}</option>;
+      })}
+    </>
+  );
+}
