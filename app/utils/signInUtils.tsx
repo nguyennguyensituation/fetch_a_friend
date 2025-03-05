@@ -1,9 +1,9 @@
 import { BASE_URL } from '@/app/utils/globalUtils';
 
-export const handleSignIn = async (event: React.FormEvent,
+export async function handleSignIn(event: React.FormEvent,
   setUsername: (name: string) => void,
-  setMessage: (message: string) => void
-) => {
+  setError: (error: string) => void,
+  setMessage: (message: string) => void) {
   const formData = new FormData(event.target as HTMLFormElement);
   const path = "/auth/login";
   const name = formData.get('name');
@@ -19,8 +19,9 @@ export const handleSignIn = async (event: React.FormEvent,
   
   if (response.ok) {
     setUsername(name as string);
+    setMessage('');
   } else {
-    setMessage('There was an error signing in. Please try again.')
+    setError('There was an error signing in. Please try again.')
     throw new Error("There was an error signing in");
   } 
 }

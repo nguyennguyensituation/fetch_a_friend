@@ -23,7 +23,9 @@ export function getAgeDisplay(age: number): string {
   }
 }
 
+// Returns a grammatically correct 'a' or 'an'
 export function getArticle(str: string): string {
+  // Vowels or number words that start with vowels
   const chars: { [key: string]: boolean } = {
     'a': true,
     'e': true,

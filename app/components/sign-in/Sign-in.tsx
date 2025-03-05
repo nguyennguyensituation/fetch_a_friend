@@ -5,14 +5,14 @@ import styles from "../sign-in/sign-in.module.css";
 import { handleSignIn } from '@/app/utils/signInUtils';
 
 export default function SignIn(props: {
-  setUsername: (name: string) => void
-}) {  
-  const [message, setMessage] = useState('');
+  setUsername: (name: string) => void,
+  setMessage: (message: string) => void }) {  
+  const [error, setError] = useState('');
 
   return (
     <form className={styles.login} onSubmit={(e: React.FormEvent) => {
       e.preventDefault();
-      handleSignIn(e, props.setUsername, setMessage);
+      handleSignIn(e, props.setUsername, setError, props.setMessage);
     }}>
       <h2>Sign in to get started</h2>
 
@@ -35,7 +35,7 @@ export default function SignIn(props: {
           placeholder="Enter your email address"
           required />
       </fieldset>
-      {message && <p className={styles.error}>{message}</p>}
+      {error && <p className={styles.error}>{error}</p>}
       <button type="submit">Sign in</button>
     </form>
   );
