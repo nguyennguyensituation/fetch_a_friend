@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Dog } from '@/app/lib/definitions';
 import styles from './match.module.css';
 import { getMatch } from '@/app/utils/matchUtils';
@@ -15,7 +14,6 @@ function HeroDog(props: {
       `${name} is ${getArticle(age.toString())} ${age} year old ${breed}.`
   })()
   const textDisplay2 = `This dog is located in ZIP code ${zip_code}.`;
-
   return (
     <article className={styles.hero}>
       <figure>
@@ -36,18 +34,20 @@ function HeroDog(props: {
 }
 
 export default function Match(props: {
-  favorites: Dog[] }) {
+  favorites: Dog[],
+  heroDog?: Dog,
+  setHeroDog: (dog: Dog) => void }) {
   const isEmpty = props.favorites.length === 0;
-  const [heroDog, setHeroDog] = useState<Dog>();
+
   return (
     <div className={styles.matchContainer}>
       <p>Once you&apos;ve finished selecting your favorite dogs, you can get matched with a new four-legged friend.</p>
       <button disabled={isEmpty} onClick={(e: React.MouseEvent) => {
-       getMatch(e, props.favorites, setHeroDog); 
+       getMatch(e, props.favorites, props.setHeroDog); 
       }}>
         Find my match!
       </button>
-      {heroDog && <HeroDog dog={heroDog}/>
+      {props.heroDog && <HeroDog dog={props.heroDog}/>
   }
     </div>
   );

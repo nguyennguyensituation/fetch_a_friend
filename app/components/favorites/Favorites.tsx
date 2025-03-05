@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from '../favorites/favorites.module.css';
 import { Dog } from '@/app/lib/definitions';
 import Item from './Item';
@@ -5,7 +6,9 @@ import Match from './Match';
 
 export default function Favorites(props: {
   favorites: Dog[],
-  setFavorites: (favorites: Dog[]) => void }) {
+  setFavorites: (favorites: Dog[]) => void,
+  heroDog?: Dog,
+  setHeroDog: (dog: Dog) => void }) {
   const faves = props.favorites;
   const total = faves.length;
   const totalDisplay = total === 1 ? '1 dog' : `${total} dogs`
@@ -29,7 +32,7 @@ export default function Favorites(props: {
           </>
         }
       </div>
-      <Match favorites={faves}/>
+      <Match favorites={faves} heroDog={props.heroDog} setHeroDog={props.setHeroDog}/>
     </section>
   );
 }

@@ -14,6 +14,7 @@ export default function Page() {
   const [currentDog, setCurrentDog] = useState<Dog>();
   const [favorites, setFavorites] = useState<Dog[]>([]);
   const [displayFaves, setDisplayFaves] = useState<boolean>(false);
+  const [heroDog, setHeroDog] = useState<Dog>();
 
   return (
     <div>
@@ -28,7 +29,9 @@ export default function Page() {
           <div>
           {displayFaves ?
             <Favorites favorites={favorites}
-              setFavorites={setFavorites}/> :
+              setFavorites={setFavorites}
+              heroDog={heroDog}
+              setHeroDog={setHeroDog}/> :
             <Profile currentDog={currentDog}
             favorites={favorites}
             setFavorites={setFavorites}/>
