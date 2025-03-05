@@ -13,16 +13,41 @@ export const defaultNextPrev: PageNavUrls = {
   prev: ''
 }
 
+function formatBreedQuery(queries: Query) {
+  const selectedAll = queries.breeds.length === 1 && queries.breeds[0] === 'any';
+
+  if (selectedAll) return '';
+
+  return queries.breeds.map(breed => {
+    return (breed !== 'any') ? `&breeds=${breed}` : ''
+  }).join('');
+}
+
 function formatQueries(queries: Query): string {
   const path = "/dogs/search?";
   const breedSortQuery = `sort=breed:${queries.sort.breed}`;
-  const selectedAllBreeds = queries.breeds.length === 1 && queries.breeds[0] === 'any';
-  const breedQuery = selectedAllBreeds ? '' :
-    queries.breeds.map(breed => (breed !== 'any') ? `&breeds=${breed}` : '').join('');
-  const ageMinQuery = `&ageMin=${queries.ageMin}`;
-  const ageMaxQuery = `&ageMax=${queries.ageMax}`;
+  const breedQuery = formatBreedQuery(queries);
+  const ageQueries = `&ageMin=${queries.ageMin}&ageMax=${queries.ageMax}`;
 
-  return BASE_URL + path + breedSortQuery + breedQuery + ageMinQuery + ageMaxQuery;
+  return BASE_URL + path + breedSortQuery + breedQuery + ageQueries;
+}
+
+export async function getDogData(ids: string[]): Promise<Dog[]> {
+  const path = "/dogs";
+  const response = await fetch(BASE_URL + path, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(ids)
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch dog objects");
+  }
+
+  const data = await response.json();
+
+  return data;
 }
 
 // Populates data for results
@@ -31,7 +56,7 @@ export async function fetchDogs(setResults: (results: Dog[]) => void,
   setNextPrev: (urls: PageNavUrls) => void,
   queries: Query): Promise<void> {
   try {
-    // First, get arr of Dog IDs, sorted and filtered by queries
+    // Get array of Dog ids, filtered and sorted by queries
     const idsUrl = formatQueries(queries);
     const searchResponse = await fetch(idsUrl, {
       credentials: 'include',
@@ -42,24 +67,11 @@ export async function fetchDogs(setResults: (results: Dog[]) => void,
       throw new Error("Failed to fetch dog ids");
     }
 
-    // Next, get Dog objects from Dog IDs arr
+    // Get array of Dog objects
     const searchData = await searchResponse.json();
     const dogIds = searchData.resultIds;
-    const dogsPath = "/dogs";
-    const dogResponse = await fetch(BASE_URL + dogsPath, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dogIds)
-    })
+    const dogData = await getDogData(dogIds);
 
-    if (!dogResponse.ok) {
-      throw new Error("Failed to fetch dog objects");
-    }
-
-    const dogData = await dogResponse.json();
-
-    // Set results and nav links
     setResults(dogData);
     setResultsCount(searchData.total)
     setNextPrev({

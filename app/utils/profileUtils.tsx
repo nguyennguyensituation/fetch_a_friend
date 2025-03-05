@@ -17,5 +17,3 @@ export function toggleFavoriteDisplay(dog: Dog,
     setSelectedDogs([...selectedDogs, dog]);
   }
 }
-
-

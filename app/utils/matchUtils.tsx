@@ -1,46 +1,37 @@
 import { Dog } from '@/app/lib/definitions';
 import { BASE_URL } from '@/app/utils/globalUtils';
+import { getDogData } from './dogUtils';
 
-function formatIds(favorites: Dog[]): string {
-  const ids = favorites.map(dog => dog.id);
+function formatIds(selectedDogs: Dog[]): string {
+  const ids = selectedDogs.map(dog => dog.id);
+
   return JSON.stringify(ids);
 }
 
 export async function getMatch(e: React.MouseEvent,
-  favorites: Dog[],
+  selectedDogs: Dog[],
   setHeroDog: (dog: Dog) => void ): Promise<void> {
   e.preventDefault();
 
   try {
-    // Get matching Dog ID
-    const matchPath = '/dogs/match';
-    const matchResponse = await fetch(BASE_URL + matchPath, {
+    // Get Hero dog ID
+    const path = '/dogs/match';
+    const response = await fetch(BASE_URL + path, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: formatIds(favorites)
+      body: formatIds(selectedDogs)
     });
 
-    if (!matchResponse.ok) {
+    if (!response.ok) {
       throw new Error('Failed to get a match');
     }
 
-    // Get Dog object
-    const matchData = await matchResponse.json();
+    // Get Hero Dog object
+    const matchData = await response.json();
     const heroId = matchData.match;
-    const dogsPath = "/dogs";
-    const dogResponse = await fetch(BASE_URL + dogsPath, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify([heroId])
-    })
+    const dogData = await getDogData([heroId]);
 
-    if (!dogResponse.ok) {
-      throw new Error('Failed to get a match');
-    }
-
-    const dogData = await dogResponse.json();
     setHeroDog(dogData[0]);
   } catch {
     throw new Error("Failed to get a match");
