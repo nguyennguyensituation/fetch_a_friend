@@ -3,7 +3,9 @@ import { BASE_URL } from './globalUtils';
 
 export const defaultQuery: Query = {
   breeds: ['any'],
-  sort: { breed: 'asc'}
+  sort: { breed: 'asc'},
+  ageMin: 0,
+  ageMax: 31
 }
 
 export const defaultNextPrev: PageNavUrls = {
@@ -17,8 +19,10 @@ function formatQueries(queries: Query): string {
   const selectedAllBreeds = queries.breeds.length === 1 && queries.breeds[0] === 'any';
   const breedQuery = selectedAllBreeds ? '' :
     queries.breeds.map(breed => (breed !== 'any') ? `&breeds=${breed}` : '').join('');
+  const ageMinQuery = `&ageMin=${queries.ageMin}`;
+  const ageMaxQuery = `&ageMax=${queries.ageMax}`;
 
-  return BASE_URL + path + breedSortQuery + breedQuery;
+  return BASE_URL + path + breedSortQuery + breedQuery + ageMinQuery + ageMaxQuery;
 }
 
 // Populates data for results

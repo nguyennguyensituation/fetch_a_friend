@@ -25,12 +25,16 @@ export function handleQuery(event: React.FormEvent,
   const formData = new FormData(event.target as HTMLFormElement);
   const selectedBreeds = formData.getAll('selectedBreeds') as string[];
   const sortBreeds = formData.get('sortBreeds') as string;
+  const ageMin = Number(formData.get('ageMin'));
+  const ageMax = Number(formData.get('ageMax'));
 
   setNextPrev(defaultNextPrev);
   setCurrentPage(1);
   setQueries({
     breeds: selectedBreeds,
-    sort: { breed: sortBreeds ? sortBreeds : 'asc'}
+    sort: { breed: sortBreeds ? sortBreeds : 'asc'},
+    ageMin: ageMin,
+    ageMax: ageMax
   });
 }
 
@@ -44,13 +48,14 @@ export function getBreedOptions(breeds?: string[]) {
 }
 
 export function getAgeOptions(isMin: boolean) {
-  const defaultOption = isMin ?'0' : '25';
-  const ages = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+  const defaultAge = isMin ? '0' : '31';
+  // Fun fact: The oldest dog on record was Bobi, a Rafeiro do Alentejo who lived to 31 years old. RIP Bobi.
+  const DOG_AGES = Array.from({ length: 32 }, (_, i) => i);
 
   return (
     <>
-      <option value={defaultOption}>Any age</option>
-      {ages.map((num, idx) => {
+      <option value={defaultAge}>Any age</option>
+      {DOG_AGES.map((num, idx) => {
         return <option key={idx} value={num}>{num}</option>;
       })}
     </>

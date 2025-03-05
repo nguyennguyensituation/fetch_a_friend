@@ -49,7 +49,7 @@ export default function FilterForm(props: {
         <label htmlFor='ageMax'>Age max:&nbsp;
           <select name='ageMax'
             id='ageMax'
-            defaultValue={'25'}
+            defaultValue={'31'}
             className={styles.ageMax}>
             {getAgeOptions(false)}
           </select>

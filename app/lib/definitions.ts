@@ -9,7 +9,9 @@ export interface Dog {
 
 export type Query = {
   breeds: string[],
-  sort: { breed: string}
+  sort: { breed: string},
+  ageMin: number,
+  ageMax: number
 }
 
 export type PageNavUrls = {

@@ -49,8 +49,8 @@
   cursor: pointer;
 }
 
-.breedOptions {
-  height: 100px;
+.breeds select {
+  margin-bottom: -8px;
 }
 
 .buttonContainer {
