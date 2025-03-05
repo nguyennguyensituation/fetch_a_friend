@@ -1,14 +1,13 @@
 .filter {
   display: grid;
   grid:
-    'title title'
-    'breeds sortBreeds'
-    'breeds sortBreeds'
-    'breeds buttons';
+    'title title title title title'
+    'breeds breeds breeds sortBreeds buttons';
   padding: 20px 20px 0 20px;
   /* background-color: #F6CDA6; */
   background-color: peru;
   height: 180px;
+  align-items: baseline;
 }
 
 .title {

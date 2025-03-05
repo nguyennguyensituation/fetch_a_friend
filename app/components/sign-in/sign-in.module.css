@@ -1,5 +1,6 @@
 .login {
-  background-color: #F6CDA6;
+  /* background-color: #F6CDA6; */
+  background-color: whitesmoke;
   padding: 20px;
 }
 
@@ -26,6 +27,11 @@
 
 .login button {
   margin: 20px 0 0 0;
+  border: solid 1px black;
+}
+
+.login button:hover {
+  background-color: tomato;
 }
 
 .error {

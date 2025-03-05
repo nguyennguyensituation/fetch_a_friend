@@ -27,12 +27,11 @@ export async function fetchDogs(setResults: (results: Dog[]) => void,
   setNextPrev: (urls: PageNavUrls) => void,
   queries: Query): Promise<void> {
   try {
-    const idsUrl = formatQueries(queries);
-
     // First, get arr of Dog IDs, sorted and filtered by queries
+    const idsUrl = formatQueries(queries);
     const searchResponse = await fetch(idsUrl, {
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     })
 
     if (!searchResponse.ok) {

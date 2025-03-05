@@ -1,0 +1,49 @@
+.matchContainer {
+  background-color: inherit;
+  height: 390px;
+  text-align: center;
+}
+
+.matchContainer p {
+  text-align: left;
+  padding: 20px 0;
+}
+
+.matchContainer button {
+  border: solid 1px black;
+}
+
+.matchContainer button:hover:not(:disabled) {
+  background-color: tomato;
+}
+
+.hero {
+  height: 200px;
+  display: grid;
+  grid-template-columns: 200px auto;
+  background-color: tomato;;
+}
+
+.hero:first-of-type {
+  margin-top: 10px;
+  border-top: solid 1px black;
+}
+
+.hero figure {
+  margin-block: 0;
+  margin-inline: 0;
+  width: 200px;
+}
+
+.details {
+  padding: 10px;
+  font-size: 0.9em;
+}
+
+.details p {
+  padding: 10px 0;
+}
+
+.details h3 {
+  text-align: left;
+}
