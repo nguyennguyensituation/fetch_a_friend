@@ -1,6 +1,7 @@
 .favorites {
   background-color: cornsilk;
   padding: 20px;
+  width: 450px;
 }
 
 .favorites h2 {
@@ -16,32 +17,27 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .favorites {
-    padding: 165px 20px 20px 20px;
-    position: fixed;
-  }
-
   .faveContainer {
-    display: grid;
+    width: 280px;
   }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .favorites {
+  .faveContainer {
     width: 300px;
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  .favorites {
+  .faveContainer {
     width: 325px;
   }
 }
 
 @media only screen and (min-width: 1475px) {
-  .favorites {
+  .faveContainer {
     width: 390px;
   }
 }

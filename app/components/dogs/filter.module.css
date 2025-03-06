@@ -49,6 +49,7 @@
   border: none;
   background-color: whitesmoke;
   cursor: pointer;
+  border-bottom: solid 1px black;
 }
 
 .buttonContainer {

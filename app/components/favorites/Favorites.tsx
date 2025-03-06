@@ -32,11 +32,12 @@ export default function Favorites(props: {
         {total === 0 ?
           <p>Add your favorite dogs to get matched to a new four-legged friend.</p> :
           <>
-             <p>Total: {totalDisplay}</p>
-             {faveList}
+          <p>Total: {totalDisplay}</p>
+          {faveList}
           </>
         }
       </div>
+      
       <Match selectedDogs={faves}
         heroDog={props.heroDog}
         setHeroDog={props.setHeroDog}/>
