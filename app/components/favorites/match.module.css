@@ -60,10 +60,23 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .matchContainer {
-    width: 90%;
+    width: 60%;
   }
 
   .hero {
     grid-template-columns: auto;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .matchContainer {
+    width: 65%;
+  }
+}
+
+@media only screen and (min-width: 1475px) {
+  .matchContainer {
+    width: 80%;
   }
 }
