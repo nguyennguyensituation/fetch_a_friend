@@ -17,6 +17,11 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  .favorites {
+    padding: 165px 20px 20px 20px;
+    position: fixed;
+  }
+
   .faveContainer {
     width: 280px;
   }
