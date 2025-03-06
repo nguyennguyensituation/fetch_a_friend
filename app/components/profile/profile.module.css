@@ -1,5 +1,5 @@
 .profile {
-  background-color: lightgoldenrodyellow;
+  background-color: cornsilk;
   padding: 20px 20px 20px 0;
 }
 
@@ -12,8 +12,9 @@
 }
 
 .profile img {
-  width: 100%;
-  max-width: 400px;
+  /* width: 100%;
+  max-width: 400px; */
+  width: 400px;
   height: auto;
 }
 
@@ -70,15 +71,17 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .profile {
-    position: fixed;
     padding: 165px 20px 20px 20px;
     height: 100%;
   }
-  .profile img {
-    max-width: 270px;
-  }
 
-  .details {
-    padding-left: 0;
+  .profile img {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1475px) {
+  .profile img {
+    width: 350px;
   }
 }

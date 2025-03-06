@@ -11,13 +11,15 @@
 }
 
 .sideContainer {
-  background-color: lightgoldenrodyellow;
+  background-color: cornsilk;
+  display: grid;
+  justify-content: center;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .mainContainer {
-    grid-template-columns: 60% 2fr;
+    grid-template-columns: 60% auto;
   } 
 }
 
@@ -25,13 +27,13 @@
 @media only screen and (min-width: 992px) {
  
   .mainContainer {
-    grid-template-columns: 70% 2fr;
+    grid-template-columns: 70% auto;
   } 
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .mainContainer {
-    grid-template-columns: 75% 2fr;
+    grid-template-columns: 75% auto;
   } 
 }

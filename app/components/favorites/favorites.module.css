@@ -8,7 +8,40 @@
 }
 
 .faveContainer {
-  height: 400px;
+  height: 350px;
   overflow: scroll;
-  border-bottom: solid 1px black;
+  mask-image: linear-gradient(to bottom, black calc(100% - 50px),transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 50px), transparent 100%);
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .favorites {
+    padding: 165px 20px 20px 20px;
+    position: fixed;
+  }
+
+  .faveContainer {
+    display: grid;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .favorites {
+    width: 300px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .favorites {
+    width: 325px;
+  }
+}
+
+@media only screen and (min-width: 1475px) {
+  .favorites {
+    width: 390px;
+  }
 }

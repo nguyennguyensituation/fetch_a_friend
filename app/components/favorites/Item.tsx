@@ -27,7 +27,7 @@ export default function Item(props: {
           <p>{name}</p>
           <p>{breed}</p>
           <p>{ageDisplay}</p>
-          <p>ZIP code: {zip_code}</p>
+          <p>ZIP: {zip_code}</p>
         </div>  
         <button onClick={(e: React.MouseEvent) => {
           e.stopPropagation();

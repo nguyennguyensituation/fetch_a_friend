@@ -85,7 +85,6 @@
     'title title title'
     'breeds ageMin sortBreeds'
     'breeds ageMax buttons';
-    /* padding-bottom: 20px; */
   }
 
   .breeds, .ageMin, .ageMax, .sortBreeds {
@@ -93,8 +92,8 @@
   }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+/* Extra large devices (large laptops and desktops, 1500px and up) */
+@media only screen and (min-width: 1500px) {
   .filter {
     grid-template-areas:
     'title title title title title'

@@ -1,6 +1,6 @@
 .matchContainer {
   background-color: inherit;
-  height: 440px;
+  height: 400px;
   text-align: center;
 }
 
@@ -16,6 +16,7 @@
 
 .matchContainer button {
   border: solid 1px black;
+  margin-top: 10px;
 }
 
 .matchContainer button:hover:not(:disabled) {
@@ -23,15 +24,13 @@
 }
 
 .hero {
-  height: 200px;
   display: grid;
   grid-template-columns: 200px auto;
-  background-color: tomato;;
+  justify-items: center;
 }
 
 .hero:first-of-type {
   margin-top: 10px;
-  border-top: solid 1px black;
 }
 
 .hero figure {
@@ -40,16 +39,31 @@
   width: 200px;
 }
 
+.hero img {
+  border-radius: 50%;
+}
+
 .details {
   padding: 10px;
   font-size: 0.9em;
 }
 
 .details p {
-  padding: 10px;
+  padding: 5px;
 }
 
 .details h3 {
   text-align: left;
-  padding: 10px;
+  padding: 5px;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .matchContainer {
+    width: 90%;
+  }
+
+  .hero {
+    grid-template-columns: auto;
+  }
 }

@@ -19,10 +19,10 @@ function HeroDog(props: {
       <figure>
         <Image src={img}
           alt={altTextDisplay}
-          width={200}
-          height={200}
+          width={150}
+          height={150}
           style={{ objectFit: 'cover', objectPosition: 'center' }}
-          sizes="(max-width: 100px) 100vw, 100vw"/>
+          />
       </figure>
       <div className={styles.details}>
         <h3>You matched with {name}!</h3>
@@ -41,8 +41,8 @@ export default function Match(props: {
 
   return (
     <div className={styles.matchContainer}>
+      <hr/>
       <h2>Matchmaker</h2>
-      <p>After you&apos;ve finished selecting your favorite dogs, get matched with a new four-legged friend.</p>
       <button disabled={isEmpty} onClick={(e: React.MouseEvent) => {
        getMatch(e, props.selectedDogs, props.setHeroDog); 
       }}>

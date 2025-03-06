@@ -57,9 +57,7 @@
     grid-template-areas:
       'logo nav';
     grid-template-columns: 70% auto;
-    background-color: pink;
     padding-bottom: 10px;
-    min-height: 140px;
   }
 
   .nav {
@@ -83,32 +81,4 @@
   .signout {
     margin-bottom: 5px;
   }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .header {
-    background-color: orange;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  .header {
-    background-color: yellow;
-    /* grid-template-columns: auto; */
-  }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .header {
-    background-color: green;
-  }
-}
-
-@media only screen and (min-width: 1475px) {
-  .header {
-    background-color: blue;
-  }  
 }

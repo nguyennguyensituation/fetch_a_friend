@@ -30,14 +30,16 @@ export default function Favorites(props: {
       <h2>Your Favorite Dogs</h2>
       <div className={styles.faveContainer}>
         {total === 0 ?
-          <p>You haven&apos;t added any favorites yet.</p> :
+          <p>Add your favorite dogs to get matched to a new four-legged friend.</p> :
           <>
              <p>Total: {totalDisplay}</p>
              {faveList}
           </>
         }
       </div>
-      <Match selectedDogs={faves} heroDog={props.heroDog} setHeroDog={props.setHeroDog}/>
+      <Match selectedDogs={faves}
+        heroDog={props.heroDog}
+        setHeroDog={props.setHeroDog}/>
     </section>
   );
 }
