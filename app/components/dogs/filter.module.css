@@ -1,13 +1,15 @@
 .filter {
   display: grid;
-  grid:
-    'title title title title title'
-    'breeds ageMin ageMax sortBreeds buttons';
-  padding: 20px 20px 0 20px;
-  /* background-color: #F6CDA6; */
+  padding: 150px 20px 0 20px;
   background-color: peru;
-  height: 180px;
-  align-items: baseline;
+  height: auto;
+  grid-template-areas:
+    'title'
+    'breeds'
+    'ageMin'
+    'ageMax'
+    'sortBreeds'
+    'buttons';
 }
 
 .title {
@@ -32,11 +34,17 @@
 
 .filter fieldset {
   border: none;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
+/* 
 .filter fieldset label {
   padding-right: 7px;
+} */
+
+.filter label {
+  font-weight: 700;
+  text-align: right;
 }
 
 .filter select {
@@ -48,12 +56,9 @@
   cursor: pointer;
 }
 
-.breeds select {
-  margin-bottom: -8px;
-}
-
 .buttonContainer {
   grid-area: buttons;
+  padding-bottom: 20px;
 }
 
 .reset {
@@ -72,4 +77,32 @@
 
 .submit:hover {
   background-color: tomato;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .filter {
+    padding: 110px 20px 0 20px; 
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .filter {
+    grid-template-areas:
+    'title title title'
+    'breeds ageMin sortBreeds'
+    'breeds ageMax buttons';
+    padding-bottom: 20px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .filter {
+    grid-template-areas:
+    'title title title title title'
+    'breeds ageMin ageMax sortBreeds buttons';
+    align-items: baseline;
+  }
 }

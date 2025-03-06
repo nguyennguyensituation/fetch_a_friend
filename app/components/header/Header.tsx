@@ -17,21 +17,23 @@ export default function Header(props: {
       </div>
     {username && 
       <nav className={styles.nav}>  
-        <h3 className={styles.greeting}>Hello, {usernameDisplay}!</h3>
-
-        <button className={styles.favorites}
-          onClick={(e: React.MouseEvent) => {
-            showFavorites(e, props.setDisplayFaves);
-          }}>
-          Favorite dogs total: {props.favoritesCount}
-        </button>
-
+    
+        <p className={styles.greeting}>Hello, {usernameDisplay}!</p>
+        
         <button className={styles.signout}
         onClick={(e: React.MouseEvent) => {
           logOut(e, props.resetApp)
           }}>
           Sign out
         </button>
+
+        <button className={styles.favorites}
+          onClick={(e: React.MouseEvent) => {
+            showFavorites(e, props.setDisplayFaves);
+          }}>
+          Favorite dogs: {props.favoritesCount}
+        </button>
+
       </nav>}
   </header>
   );

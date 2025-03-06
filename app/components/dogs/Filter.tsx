@@ -24,40 +24,37 @@ export default function FilterForm(props: {
       <h2 className={styles.title}>Filter Dogs</h2>
 
       <fieldset className={styles.breeds}>    
-        <label htmlFor='selectedBreeds'>Selected breed(s):&nbsp;
-          <select name='selectedBreeds' multiple
+        <label htmlFor='selectedBreeds'>Selected breed(s)&nbsp;</label>
+        <select name='selectedBreeds' multiple
             id='selectedBreeds'
             defaultValue={['any']}
             className={styles.breedOptions}>
             {breeds ? getBreedOptions(breeds) : breedPlaceholder}
           </select>
-        </label>
       </fieldset>
 
       <fieldset className={styles.ageMin}>    
-        <label htmlFor='ageMin'>Age min:&nbsp;
-          <select name='ageMin'
+        <label htmlFor='ageMin'>Age min &nbsp;</label>
+        <select name='ageMin'
             id='ageMin'
             defaultValue={'0'}
             className={styles.ageMin}>
             {getAgeOptions(true)}
           </select>
-        </label>
       </fieldset>
 
       <fieldset className={styles.ageMax}>    
-        <label htmlFor='ageMax'>Age max:&nbsp;
-          <select name='ageMax'
+        <label htmlFor='ageMax'>Age max&nbsp;</label>
+        <select name='ageMax'
             id='ageMax'
             defaultValue={'31'}
             className={styles.ageMax}>
             {getAgeOptions(false)}
           </select>
-        </label>
       </fieldset>
 
       <fieldset className={styles.sortBreeds}>
-        <label htmlFor='sortBreeds'>Sort breed(s) from</label>
+        <label htmlFor='sortBreeds'>Sort breed(s) from&nbsp;</label>
         <select name='sortBreeds' id='sortBreeds' defaultValue="asc">
           <option value="asc" >A to Z</option>
           <option value="desc">Z to A</option>

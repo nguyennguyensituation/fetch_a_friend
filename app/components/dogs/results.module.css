@@ -3,8 +3,8 @@
   display: grid;
   grid-gap: 12px;
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
-  /* background-color: #C4E6FF; */
-  background-color: cornflowerblue;
+  background-color: #C4E6FF;
+  /* background-color: cornflowerblue; */
   height: 585px;
   overflow: scroll;
 }

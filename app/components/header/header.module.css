@@ -1,47 +1,103 @@
 .header {
   background-color: tomato;
   display: grid;
-  grid-template-columns: 70% auto;
+  grid-template-areas:
+    'logo'
+    'nav';
+  height: 100px;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 200;
 }
 
 .logo {
-  padding: 10px 20px;
+  grid-area: logo;
+  padding-bottom: 10px;
+}
+
+.nav {
+  grid-area: nav;
+  display: grid;
+  grid-template-areas:
+    'greeting signout favorites';
+  grid-template-columns: auto auto auto;
+  height: 30px;
+}
+
+.greeting {
+  grid-area: greeting;
+  align-self: baseline;
 }
 
 .username {
   text-transform: capitalize;
 }
 
-.greeting {
-  grid-area: greeting;
-  padding: 20px;
-  text-align: right;
-}
-
 .signout {
   grid-area: signout;
-  text-align: right;
 }
 
 .favorites {
-  text-align: left;
   grid-area: favorites;
-  padding-left: 0;
-}
-
-.nav {
-  display: grid;
-  grid-template-areas:
-    'greeting greeting'
-    'favorites signout';
-  grid-template-rows: auto 40px;
 }
 
 .nav button {
   border-radius: 0;
   text-decoration: underline;
+  text-align: center;
+  padding: 0;
+  min-width: auto;
 }
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .header {
+    background-color: pink;
+    grid-template-areas:
+      'logo nav';
+    grid-template-columns: 70% 30%;
+    height: 50px;
+  }
 
+  .nav {
+    grid-template-areas:
+      'greeting'
+      'signout'
+      'favorites';
+    text-align: right;
+    grid-template-columns: auto auto auto;
+  }
 
+  .nav button {
+    text-align: right;
+  }
+}
 
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .header {
+    background-color: orange;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .header {
+    background-color: yellow;
+    /* grid-template-columns: auto; */
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .header {
+    background-color: green;
+  }
+}
+
+@media only screen and (min-width: 1475px) {
+  .header {
+    background-color: blue;
+  }  
+}

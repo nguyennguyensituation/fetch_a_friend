@@ -1,6 +1,7 @@
 .nav {
   text-align: center;
-  background-color: cornflowerblue;
+  background-color: #C4E6FF;
+  padding: 20px 0;
 }
 
 .nav * {

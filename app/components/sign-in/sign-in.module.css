@@ -1,7 +1,7 @@
 .login {
-  /* background-color: #F6CDA6; */
   background-color: peru;
   padding: 20px;
+  padding-top: 160px;
 }
 
 .login * {
@@ -21,7 +21,8 @@
   padding: 10px;
   border-radius: 3px;
   border: none;
-  width: 500px;
+  width: 90%;
+  max-width: 500px;
   font-size: 1em;
 }
 
