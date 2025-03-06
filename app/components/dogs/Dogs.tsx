@@ -32,11 +32,13 @@ export default function Dogs(props: {
       <Summary queries={queries}
         resultsCount={resultsCount}
         currentPage={currentPage}/>
-      <Results results={results}
+      <Results 
+        results={results}
         setCurrentDog={props.setCurrentDog}
         setDisplayFaves={props.setDisplayFaves}
         selectedDogs={props.selectedDogs}
-        setSelectedDogs={props.setSelectedDogs}/>
+        setSelectedDogs={props.setSelectedDogs}
+      />
       <Nav setResults={setResults}
         nextPrev={nextPrev}
         setNextPrev={setNextPrev}

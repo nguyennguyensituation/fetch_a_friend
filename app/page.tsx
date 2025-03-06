@@ -1,5 +1,4 @@
 "use client"
-
 import { Dog } from '@/app/lib/definitions';
 import Header from "@/app/components/header/Header";
 import SignIn from "./components/sign-in/Sign-in";
