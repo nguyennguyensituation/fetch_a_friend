@@ -35,24 +35,25 @@ export default function Page() {
         resetApp={resetApp}/>
       <main>
         {!username && <SignIn setUsername={setUsername} setMessage={setMessage}/>}
-        {username && <div className={styles.mainContainer}>
-          <Dogs setCurrentDog={setCurrentDog}
-            setDisplayFaves={setDisplayFaves}
-            selectedDogs={selectedDogs}
-            setSelectedDogs={setSelectedDogs}/>
-          <div>
-          {displayFaves ?
-            <Favorites selectedDogs={selectedDogs}
-              setSelectedDogs={setSelectedDogs}
-              heroDog={heroDog}
-              setHeroDog={setHeroDog}
-              setCurrentDog={setCurrentDog}
-              setDisplayFaves={setDisplayFaves}/> :
-            <Profile currentDog={currentDog}
-            selectedDogs={selectedDogs}
-            setSelectedDogs={setSelectedDogs}/>
-          }
-          </div>
+        {username &&
+          <div className={styles.mainContainer}>
+            <Dogs setCurrentDog={setCurrentDog}
+              setDisplayFaves={setDisplayFaves}
+              selectedDogs={selectedDogs}
+              setSelectedDogs={setSelectedDogs}/>
+            <div className={styles.sideContainer}>
+              {displayFaves ?
+                <Favorites selectedDogs={selectedDogs}
+                  setSelectedDogs={setSelectedDogs}
+                  heroDog={heroDog}
+                  setHeroDog={setHeroDog}
+                  setCurrentDog={setCurrentDog}
+                  setDisplayFaves={setDisplayFaves}/> :
+                <Profile currentDog={currentDog}
+                selectedDogs={selectedDogs}
+                setSelectedDogs={setSelectedDogs}/>
+              }
+            </div>
         </div>}
       </main>
     </div>

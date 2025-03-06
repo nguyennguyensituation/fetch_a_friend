@@ -76,13 +76,16 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
   .filter {
     grid-template-areas:
     'title title title'
     'breeds ageMin sortBreeds'
     'breeds ageMax buttons';
-    padding-bottom: 20px;
-    column-gap: 10px;
+    /* padding-bottom: 20px; */
   }
 
   .breeds, .ageMin, .ageMax, .sortBreeds {

@@ -6,4 +6,6 @@
   background-color: #C4E6FF;
   height: 585px;
   overflow: scroll;
+  mask-image: linear-gradient(to bottom, black calc(100% - 100px), transparent 100%);
 }
+

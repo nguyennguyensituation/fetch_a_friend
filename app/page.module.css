@@ -1,6 +1,6 @@
 .mainContainer {
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: auto;
 }
 
 .message {
@@ -10,27 +10,28 @@
   z-index: 100;
 }
 
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-
+.sideContainer {
+  background-color: lightgoldenrodyellow;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  
+  .mainContainer {
+    grid-template-columns: 60% 2fr;
+  } 
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
+ 
+  .mainContainer {
+    grid-template-columns: 70% 2fr;
+  } 
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  
-}
-
-@media only screen and (min-width: 1475px) {
-  
+  .mainContainer {
+    grid-template-columns: 75% 2fr;
+  } 
 }

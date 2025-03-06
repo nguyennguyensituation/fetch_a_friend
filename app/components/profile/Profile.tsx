@@ -36,8 +36,9 @@ export default function Profile(props: {
         <figure>
           <Image src={img}
             alt={altTextDisplay}
-            width={400}
-            height={400}
+            width={0}
+            height={0}
+            sizes="100vw"
           />
         </figure>
       </article>

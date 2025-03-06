@@ -1,16 +1,19 @@
 .profile {
   background-color: lightgoldenrodyellow;
   padding: 20px 20px 20px 0;
-  height: 100%;
 }
 
 .profile figure {
+  display: block;
   margin-block: 0;
   margin-inline: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .profile img {
   width: 100%;
+  max-width: 400px;
   height: auto;
 }
 
@@ -64,4 +67,18 @@
   padding-bottom: 20px;
 }
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .profile {
+    position: fixed;
+    padding: 165px 20px 20px 20px;
+    height: 100%;
+  }
+  .profile img {
+    max-width: 270px;
+  }
 
+  .details {
+    padding-left: 0;
+  }
+}
