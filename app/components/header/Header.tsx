@@ -31,7 +31,7 @@ export default function Header(props: {
           onClick={(e: React.MouseEvent) => {
             showFavorites(e, props.setDisplayFaves);
           }}>
-          Favorite dogs: {props.favoritesCount}
+          &#9829; Favorites: {props.favoritesCount}
         </button>
 
       </nav>}

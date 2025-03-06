@@ -21,6 +21,7 @@ export default function FilterForm(props: {
       e.preventDefault();
       handleQuery(e, props.setQueries, props.setNextPrev, props.setCurrentPage);
       }}>
+
       <h2 className={styles.title}>Filter Dogs</h2>
 
       <fieldset className={styles.breeds}>    

@@ -1,6 +1,6 @@
 .filter {
   display: grid;
-  padding: 150px 20px 0 20px;
+  padding: 160px 20px 0 20px;
   background-color: peru;
   height: auto;
   grid-template-areas:
@@ -37,11 +37,6 @@
   padding: 10px 0;
 }
 
-/* 
-.filter fieldset label {
-  padding-right: 7px;
-} */
-
 .filter label {
   font-weight: 700;
   text-align: right;
@@ -58,7 +53,7 @@
 
 .buttonContainer {
   grid-area: buttons;
-  padding-bottom: 20px;
+  padding: 10px 0 20px;
 }
 
 .reset {
@@ -76,24 +71,22 @@
 }
 
 .submit:hover {
-  background-color: tomato;
+  background-color: whitesmoke;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .filter {
-    padding: 110px 20px 0 20px; 
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
   .filter {
     grid-template-areas:
     'title title title'
     'breeds ageMin sortBreeds'
     'breeds ageMax buttons';
     padding-bottom: 20px;
+    column-gap: 10px;
+  }
+
+  .breeds, .ageMin, .ageMax, .sortBreeds {
+    display: block;
   }
 }
 
@@ -104,5 +97,9 @@
     'title title title title title'
     'breeds ageMin ageMax sortBreeds buttons';
     align-items: baseline;
+  }
+
+  .breeds, .ageMin, .ageMax, .sortBreeds, .ageMin {
+    display: inline;
   }
 }
